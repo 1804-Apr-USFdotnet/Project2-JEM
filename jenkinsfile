@@ -1,0 +1,32 @@
+node('master') {
+    stage('import') {
+        git 'https://github.com/1804-Apr-USFdotnet/Project2-JEM.git'
+    }
+    stage('build') {
+        dir('FTV_API'){
+        
+          bat 'nuget restore'
+          bat 'msbuild'
+        }
+        
+    }
+    stage('test'){
+    }
+    stage('analyze'){
+        // bat 'SonarQube.Scanner.MSBuild begin /k:restaurantReviews /v:0.1.0'
+        // bat 'msbuild /t:rebuild'
+        // bat 'SonarQube.Scanner.MSBuild end'
+    }
+    stage('package'){
+        dir('FTV_API'){
+            bat 'msbuild /t:package'
+        }
+    }
+    // stage('deploy'){
+    //     dir('/FTV_API'){
+    //         dir('FTV.SL/obj/Debug/Package'){
+    //         bat "\"C:\\Program Files\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe\" -source:package='C:\\Program Files (x86)\\Jenkins\\workspace\\Project-1\\RestaurantReviews.Web\\obj\\Debug\\Package\\RestaurantReviews.Web.zip' -dest:auto,computerName=\"https://ec2-18-218-254-54.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"6229drag3412!\",authtype=\"basic\",includeAcls=\"False\" -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParamFile:\"C:\\Program Files (x86)\\Jenkins\\workspace\\Project-1\\RestaurantReviews.Web\\obj\\Debug\\Package\\RestaurantReviews.Web.SetParameters.xml\" -AllowUntrusted=True"
+    //         }
+    //     }    
+    // }
+}
