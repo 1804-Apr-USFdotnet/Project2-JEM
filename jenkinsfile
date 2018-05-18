@@ -1,6 +1,6 @@
 node('master') {
     stage('import') {
-        git 'https://github.com/1804-Apr-USFdotnet/Project2-JEM.git'
+        git branch: 'Develop', url: 'https://github.com/1804-Apr-USFdotnet/Project2-JEM.git'
     }
     stage('build') {
         
