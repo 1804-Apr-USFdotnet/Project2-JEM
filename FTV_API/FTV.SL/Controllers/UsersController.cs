@@ -1,10 +1,6 @@
-﻿using System;
+﻿using FTV.DAL.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using FTV.DAL.Models;
 
 namespace FTV.SL.Controllers
 {
