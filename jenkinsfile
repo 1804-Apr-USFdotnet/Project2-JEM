@@ -3,11 +3,11 @@ node('master') {
         git 'https://github.com/1804-Apr-USFdotnet/Project2-JEM.git'
     }
     stage('build') {
-        dir('FTV_API'){
+        
         
           bat 'nuget restore'
           bat 'msbuild'
-        }
+        
         
     }
     stage('test'){
