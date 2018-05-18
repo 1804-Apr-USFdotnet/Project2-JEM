@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Serialization;
 
-namespace FTV.DAL
+namespace FTV.DAL.Models
 {
     [Table("User", Schema = "FTV")]
     public class User
@@ -17,13 +12,13 @@ namespace FTV.DAL
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "First Name is Required" )]
+        [Required(ErrorMessage = "First Name is Required")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Last Name is Required" )]
+        [Required(ErrorMessage = "Last Name is Required")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "User Name is Required" )]
+        [Required(ErrorMessage = "User Name is Required")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Password is Required")]
@@ -37,9 +32,5 @@ namespace FTV.DAL
         public string InGameName { get; set; }
 
         public virtual ICollection<FollowedPlayer> FollowedPlayers { get; set; }
-
     }
-
-
-
 }
