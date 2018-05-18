@@ -22,6 +22,7 @@ namespace FTV.DAL.Models
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Password is Required")]
+        [StringLength(64, MinimumLength = 6, ErrorMessage = "Password must be between 6 and 64 characters.")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Email Address is Required")]
