@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTV.DAL", "FTV_Models\FTV.DAL.csproj", "{3CA83222-9AFF-4145-8ED4-FD8084CEACB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTV.SL", "FTV.SL\FTV.SL.csproj", "{7AA3BD2E-A50C-4EC1-9C8F-A4D829740EF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3CA83222-9AFF-4145-8ED4-FD8084CEACB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CA83222-9AFF-4145-8ED4-FD8084CEACB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CA83222-9AFF-4145-8ED4-FD8084CEACB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AA3BD2E-A50C-4EC1-9C8F-A4D829740EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AA3BD2E-A50C-4EC1-9C8F-A4D829740EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AA3BD2E-A50C-4EC1-9C8F-A4D829740EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AA3BD2E-A50C-4EC1-9C8F-A4D829740EF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
