@@ -5,7 +5,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 
 
@@ -14,9 +13,9 @@ namespace FTV.SL.Controllers
     public class UsersController : ApiController
     {
 
-        [HttpPost]
-        [Route("~/api/User/Register")]
-        [AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("~/api/User/Register")]
+        [System.Web.Mvc.AllowAnonymous]
         public IHttpActionResult Register(User user)
         {
             if (!ModelState.IsValid)
@@ -29,19 +28,23 @@ namespace FTV.SL.Controllers
             var userManager = new UserManager<IdentityUser>(userStore);
             var userAdd = new IdentityUser(user.UserName);
 
-            if (userManager.Users.Any(u => u.UserName == userAdd.UserName))
+            if (userManager != null)
             {
-                return BadRequest();
+                if (userManager.Users.Any(u => u.UserName == userAdd.UserName))
+                {
+                    return BadRequest();
+                }
+
+                userManager.Create(userAdd, user.Password);
             }
 
-            userManager.Create(userAdd, user.Password);
             return Ok();
 
         }
 
-        [HttpPost]
-        [Route("~/api/User/Login")]
-        [AllowAnonymous]
+        [System.Web.Mvc.HttpPost]
+        [System.Web.Mvc.Route("~/api/User/Login")]
+        [System.Web.Mvc.AllowAnonymous]
         public IHttpActionResult LogIn(User user)
         {
             if (!ModelState.IsValid)
@@ -73,8 +76,8 @@ namespace FTV.SL.Controllers
 
         }
 
-        [HttpGet]
-        [Route("~/api/User/Logout")]
+        [System.Web.Mvc.HttpGet]
+        [System.Web.Mvc.Route("~/api/User/Logout")]
         public IHttpActionResult Logout()
         {
             Request.GetOwinContext().Authentication.SignOut();

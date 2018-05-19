@@ -16,4 +16,8 @@ Monica Miller
 * .NET
 * ASP.NET
 * RESTful API
+* DevOps
+  * Jenkins
+  * SonarCloud
+  
 
