@@ -46,7 +46,7 @@ node('master') {
     }
     stage('package'){
         try{
-            dir('FTV_API\FTV.SL'){
+            dir('FTV_API/FTV.SL'){
                 bat 'msbuild /t:package'
             }
         }
