@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTV.SL", "FTV.SL\FTV.SL.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTV.BL", "FTV.BL\FTV.BL.csproj", "{EFD25CCE-F2C8-4788-BEE5-1718708C6DA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTV.Repositories", "Repositories\FTV.Repositories.csproj", "{DBD16C8A-100C-4376-9C71-9A6D4771E6EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTV.Console", "FTV.Console\FTV.Console.csproj", "{AED12CF6-5C02-4BED-A014-D76FB8BCA718}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{EFD25CCE-F2C8-4788-BEE5-1718708C6DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFD25CCE-F2C8-4788-BEE5-1718708C6DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFD25CCE-F2C8-4788-BEE5-1718708C6DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBD16C8A-100C-4376-9C71-9A6D4771E6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD16C8A-100C-4376-9C71-9A6D4771E6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD16C8A-100C-4376-9C71-9A6D4771E6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD16C8A-100C-4376-9C71-9A6D4771E6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AED12CF6-5C02-4BED-A014-D76FB8BCA718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AED12CF6-5C02-4BED-A014-D76FB8BCA718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AED12CF6-5C02-4BED-A014-D76FB8BCA718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AED12CF6-5C02-4BED-A014-D76FB8BCA718}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
