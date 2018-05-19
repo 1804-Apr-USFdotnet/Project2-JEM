@@ -19,5 +19,4 @@ Monica Miller
 * DevOps
   * Jenkins
   * SonarCloud
-  
 
