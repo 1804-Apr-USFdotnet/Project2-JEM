@@ -58,7 +58,7 @@ node('master') {
     stage('deploy'){
         try{
          dir('FTV_API'){
-                 bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-52-15-80-15.compute-1.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"6229drag3412!\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
+                 bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-52-15-80-15.compute-2.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"6229drag3412!\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
 
             }
         }
