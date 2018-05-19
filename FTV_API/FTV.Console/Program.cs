@@ -1,4 +1,5 @@
-﻿using FTV.DAL;
+﻿using System.Linq;
+using FTV.DAL;
 using FTV.DAL.Models;
 using Repositories;
 
@@ -9,7 +10,7 @@ namespace FTV.Console
         static void Main(string[] args)
         {
             FTVContext context = new FTVContext();
-            System.Console.WriteLine(context.Users.Find(u => u.id == 1));
+            System.Console.WriteLine(context.Users.ToList().Count());
 
 //            using (var unitofWork = new UnitOfWork(new FTVContext()))
 //            {
