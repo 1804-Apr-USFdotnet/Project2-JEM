@@ -47,7 +47,7 @@ node('master') {
     stage('package'){
         try{
             dir('FTV_API/FTV.SL'){
-                bat 'msbuild /t:package'
+                bat 'msbuild /t:package /p:Configuration=Debug;PackageFileName=..\\Package.zip'
             }
         }
         catch(exc){
@@ -57,7 +57,7 @@ node('master') {
     }
     stage('deploy'){
         try{
-         dir('FTV_API/FTV.SL/obj/Debug/Package'){
+         dir('FTV_API'){
                  bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-52-15-80-15.compute-1.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"6229drag3412!\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
 
             }
