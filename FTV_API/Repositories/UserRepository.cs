@@ -16,7 +16,7 @@ namespace Repositories
 
         public User GetFirstUser()
         {
-            return FTVContext.Users.First();
+            return FTVContext.Users.Find(0);
         }
 
         public IEnumerable<User> GetTopFollowedPlayers()
