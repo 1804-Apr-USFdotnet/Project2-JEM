@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using FTV.DAL.Models;
 
-namespace FTV.DAL.Dtos
+namespace FTV.DAL.ViewModels
 {
     public class UserViewModel
     {

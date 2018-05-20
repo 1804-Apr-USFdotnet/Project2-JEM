@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AutoMapper;
-using FTV.DAL.Dtos;
+﻿using AutoMapper;
 using FTV.DAL.Models;
+using FTV.DAL.ViewModels;
 
 namespace FTV.SL.App_Start
 {

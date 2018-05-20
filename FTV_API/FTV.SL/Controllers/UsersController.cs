@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using AutoMapper;
+﻿using AutoMapper;
 using FTV.DAL;
-using FTV.DAL.Dtos;
 using FTV.DAL.Models;
+using FTV.DAL.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Repositories;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace FTV.SL.Controllers
 {
@@ -25,9 +25,9 @@ namespace FTV.SL.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IEnumerable<UserViewModel> Get()
         {
-            return _context.Users.GetAll();
+            return Mapper.Map<List<UserViewModel>>(_context.Users.GetAll());
         }
 
         // GET: api/Users/5
@@ -41,12 +41,13 @@ namespace FTV.SL.Controllers
 
         // POST: api/Users
         [HttpPost]
-        public User Post([FromBody] User user)
+        public UserViewModel Post([FromBody] UserViewModel userViewModel)
         {
             if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.BadRequest);
+            var user = Mapper.Map<UserViewModel, User>(userViewModel);
             _context.Users.Add(user);
             _context.Complete();
-            return user;
+            return userViewModel;
         }
 
         // PUT: api/Users/5
@@ -87,7 +88,6 @@ namespace FTV.SL.Controllers
             if (userManager != null)
             {
                 if (userManager.Users.Any(u => u.UserName == userAdd.UserName)) return BadRequest();
-
                 userManager.Create(userAdd, user.Password);
             }
 
