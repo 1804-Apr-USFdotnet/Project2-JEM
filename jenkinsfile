@@ -36,7 +36,7 @@ node('master') {
         try{
             dir('FTV_API'){
                 bat 'SonarScanner.MSBuild.exe begin /k:Project-2-JEM /d:sonar.organization="emisale94-github" /v:0.1.0'
-                bat 'msbuild FTV_API.sln /t:rebuild'
+                bat 'msbuild FTV.SL /t:rebuild'
                 bat 'SonarScanner.MSBuild.exe end'
             }
         }
