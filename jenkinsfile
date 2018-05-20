@@ -35,9 +35,9 @@ node('master') {
     stage('analyze'){
         try{
             dir('FTV_API'){
-                bat 'SonarScanner.MSBuild begin /k:Project-2-JEM /v:0.1.0 /d:sonar.verbose=true'
+                bat 'SonarQube.Scanner.MSBuild.exe begin /k:Project-2-JEM /v:0.1.0 /d:sonar.verbose=true'
                 bat 'msbuild /t:rebuild'
-                bat 'SonarScanner.MSBuild end'
+                bat 'SonarQube.Scanner.MSBuild.exe end'
             }
         }
         catch(exc){
