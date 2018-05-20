@@ -32,11 +32,11 @@ namespace FTV.SL.Controllers
 
         // GET: api/Users/5
         [HttpGet]
-        public User Get(int id)
+        public UserViewModel Get(int id)
         {
             var user = _context.Users.Get(id);
             if (user == null) throw new HttpResponseException(HttpStatusCode.NotFound);
-            return user;
+            return Mapper.Map<UserViewModel>(user);
         }
 
         // POST: api/Users
