@@ -86,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.Designer.cs">
       <DependentUpon>201805192258497_ItToldMeToUpdate.cs</DependentUpon>

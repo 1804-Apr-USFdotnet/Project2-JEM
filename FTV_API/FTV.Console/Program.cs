@@ -5,37 +5,50 @@ using Repositories;
 
 namespace FTV.Console
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            FTVContext context = new FTVContext();
-
-            var john = new User
-            {
-                Id = 1,
-                FirstName = "john",
-                LastName = "dominguez",
-                Email = "123@gmail.com",
-                Password = "123456",
-                UserName = "Sougyo",
-                InGameName = "Sougyo"
-            };
-            context.Users.Add(john);
-
-            System.Console.WriteLine(context.Users.ToList().Count());
-
             using (var unitofWork = new UnitOfWork(new FTVContext()))
             {
-                System.Console.WriteLine(unitofWork.Users.GetFirstUser());
-//                /*
+                System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
 
-                unitofWork.Users.Add(john);
+                
+//                unitofWork.Users.Remove(user);
+                unitofWork.Users.Add(new User
+                {
+                    FirstName = "john",
+                    LastName = "dominguez",
+                    Email = "123@gmail.com",
+                    Password = "123456",
+                    UserName = "Sougyo",
+                    InGameName = "Sougyo"
+                });
                 unitofWork.Complete();
 
-                System.Console.WriteLine(unitofWork.Users.Get(1).UserName);
-//                */
+                System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
+                var user = unitofWork.Users.Find(x => x.UserName == "Sougyo").First();
+                unitofWork.Users.Remove(user);
+                unitofWork.Complete();
+
+                System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
+
+               
+                
             }
-            }
+        }
     }
 }
+
+/*
+ Users.Add(new User
+   {
+   Id = 1,
+   FirstName = "john",
+   LastName = "dominguez",
+   Email = "123@gmail.com",
+   Password = "123456",
+   UserName = "Sougyo",
+   InGameName = "Sougyo"
+   }); 
+ */
