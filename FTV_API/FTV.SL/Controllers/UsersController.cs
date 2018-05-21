@@ -73,10 +73,10 @@ namespace FTV.SL.Controllers
 
 //         Authentication
 
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("~/api/User/Register")]
-        [System.Web.Mvc.AllowAnonymous]
-        public IHttpActionResult Register(User user)
+        [HttpPost]
+        [Route("~/api/User/Register")]
+        [AllowAnonymous]
+        public IHttpActionResult Register(UserViewModel user)
         {
             if (!ModelState.IsValid) return BadRequest();
 
@@ -94,10 +94,10 @@ namespace FTV.SL.Controllers
             return Ok();
         }
 
-        [System.Web.Mvc.HttpPost]
-        [System.Web.Mvc.Route("~/api/User/Login")]
-        [System.Web.Mvc.AllowAnonymous]
-        public IHttpActionResult LogIn(User user)
+        [HttpPost]
+        [Route("~/api/User/Login")]
+        [AllowAnonymous]
+        public IHttpActionResult LogIn(UserViewModel user)
         {
             if (!ModelState.IsValid) return BadRequest();
 
@@ -111,18 +111,18 @@ namespace FTV.SL.Controllers
             if (!userManager.CheckPassword(userLogin, user.Password)) return Unauthorized();
 
             var authManager = Request.GetOwinContext().Authentication;
-            var claimsIdentity = userManager.CreateIdentity(userLogin, "ApplicationCookie");
+            var claimsIdentity = userManager.CreateIdentity(userLogin, WebApiConfig.AuthenticationType);
              
             authManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claimsIdentity);
 
             return Ok();
         }
 
-        [System.Web.Mvc.HttpGet]
-        [System.Web.Mvc.Route("~/api/User/Logout")]
+        [HttpGet]
+        [Route("~/api/User/Logout")]
         public IHttpActionResult Logout()
         {
-            Request.GetOwinContext().Authentication.SignOut();
+            Request.GetOwinContext().Authentication.SignOut(WebApiConfig.AuthenticationType);
             return Ok();
         }
     }

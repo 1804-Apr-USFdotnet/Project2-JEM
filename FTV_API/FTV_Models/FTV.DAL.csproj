@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.Designer.cs">
       <DependentUpon>201805211556591_AddCommentTableAndAddedDateTimeValues.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805212035303_remove constraints.cs" />
+    <Compile Include="Migrations\201805212035303_remove constraints.Designer.cs">
+      <DependentUpon>201805212035303_remove constraints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Comment.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.cs" />
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.resx">
       <DependentUpon>201805211556591_AddCommentTableAndAddedDateTimeValues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805212035303_remove constraints.resx">
+      <DependentUpon>201805212035303_remove constraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
