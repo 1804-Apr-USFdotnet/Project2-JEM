@@ -112,7 +112,7 @@ namespace FTV.SL.Controllers
 
             var authManager = Request.GetOwinContext().Authentication;
             var claimsIdentity = userManager.CreateIdentity(userLogin, "ApplicationCookie");
-
+             
             authManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claimsIdentity);
 
             return Ok();
