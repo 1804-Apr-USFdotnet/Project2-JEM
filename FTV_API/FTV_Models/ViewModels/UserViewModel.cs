@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using FTV.DAL.Models;
-
-namespace FTV.DAL.ViewModels
+﻿namespace FTV.DAL.ViewModels
 {
     public class UserViewModel
     {

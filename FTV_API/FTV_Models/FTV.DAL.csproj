@@ -86,6 +86,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="IDbContext.cs" />
+    <Compile Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.cs" />
+    <Compile Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.Designer.cs">
+      <DependentUpon>201805211556591_AddCommentTableAndAddedDateTimeValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.Designer.cs">
@@ -111,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805192258497_ItToldMeToUpdate.resx">
       <DependentUpon>201805192258497_ItToldMeToUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.resx">
+      <DependentUpon>201805211556591_AddCommentTableAndAddedDateTimeValues.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

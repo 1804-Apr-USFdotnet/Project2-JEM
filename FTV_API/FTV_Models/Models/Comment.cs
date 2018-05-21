@@ -4,20 +4,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FTV.DAL.Models
 {
-    [Table("Followed Player", Schema = "FTV")]
-    public class FollowedPlayer
+    [Table("Comment", Schema = "FTV")]
+    public class Comment
     {
+        //Primary Key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Followed Player's in game name is required")]
-        public string InGameName { get; set; }
+        [StringLength(400, MinimumLength = 10, ErrorMessage = "Character limit of 400 reached")]
+        [DataType(DataType.MultilineText)]
+        public string Body { get; set; }
 
+        [Required] public int UserId { get; set; }
 
-        [ScaffoldColumn(false)] public int UserId { get; set; }
-
+        //Foreign Key
         public virtual User User { get; set; }
 
         //DateTime

@@ -13,7 +13,7 @@ namespace FTV.Console
             {
                 System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
 
-                
+
 //                unitofWork.Users.Remove(user);
                 unitofWork.Users.Add(new User
                 {
@@ -32,9 +32,6 @@ namespace FTV.Console
                 unitofWork.Complete();
 
                 System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
-
-               
-                
             }
         }
     }

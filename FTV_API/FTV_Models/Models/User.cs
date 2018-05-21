@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -33,5 +34,10 @@ namespace FTV.DAL.Models
         public string InGameName { get; set; }
 
         public virtual ICollection<FollowedPlayer> FollowedPlayers { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+
+        //DateTime
+        public DateTime? Created { get; set; }
+        public DateTime? Modified { get; set; }
     }
 }
