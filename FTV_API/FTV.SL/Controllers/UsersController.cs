@@ -71,59 +71,6 @@ namespace FTV.SL.Controllers
             _context.Complete();
         }
 
-//         Authentication
 
-        [HttpPost]
-        [Route("~/api/User/Register")]
-        [AllowAnonymous]
-        public IHttpActionResult Register(UserViewModel user)
-        {
-            if (!ModelState.IsValid) return BadRequest();
-
-            //actually register 
-            var userStore = new UserStore<IdentityUser>(new FTVContext());
-            var userManager = new UserManager<IdentityUser>(userStore);
-            var userAdd = new IdentityUser(user.UserName);
-
-            if (userManager != null)
-            {
-                if (userManager.Users.Any(u => u.UserName == userAdd.UserName)) return BadRequest();
-                userManager.Create(userAdd, user.Password);
-            }
-
-            return Ok();
-        }
-
-        [HttpPost]
-        [Route("~/api/User/Login")]
-        [AllowAnonymous]
-        public IHttpActionResult LogIn(UserViewModel user)
-        {
-            if (!ModelState.IsValid) return BadRequest();
-
-            //actually Login 
-            var userStore = new UserStore<IdentityUser>(new FTVContext());
-            var userManager = new UserManager<IdentityUser>(userStore);
-            var userLogin = userManager.Users.FirstOrDefault(u => u.UserName == user.UserName);
-
-            if (user == null) return BadRequest();
-
-            if (!userManager.CheckPassword(userLogin, user.Password)) return Unauthorized();
-
-            var authManager = Request.GetOwinContext().Authentication;
-            var claimsIdentity = userManager.CreateIdentity(userLogin, WebApiConfig.AuthenticationType);
-             
-            authManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claimsIdentity);
-
-            return Ok();
-        }
-
-        [HttpGet]
-        [Route("~/api/User/Logout")]
-        public IHttpActionResult Logout()
-        {
-            Request.GetOwinContext().Authentication.SignOut(WebApiConfig.AuthenticationType);
-            return Ok();
-        }
     }
 }
