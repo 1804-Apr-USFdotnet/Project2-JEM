@@ -28,7 +28,7 @@ namespace Repositories
         public IEnumerable<User> GetUsersWithFollowedPlayers(int pageIndex = 0, int pageSize = 10)
         {
             return FTVContext.Users
-                .Include(c => c.FollowedPlayers)
+                .Include(c => c.FollowedPlayers.Count > 0)
                 .OrderBy(c => c.FollowedPlayers.Count)
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize)
