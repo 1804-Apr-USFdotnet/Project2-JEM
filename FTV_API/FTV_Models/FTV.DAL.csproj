@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="DataDbContext.cs" />
     <Compile Include="IDbContext.cs" />
     <Compile Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.cs" />
     <Compile Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.Designer.cs">
@@ -96,6 +97,7 @@
     <Compile Include="Migrations\201805212035303_remove constraints.Designer.cs">
       <DependentUpon>201805212035303_remove constraints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.cs" />
