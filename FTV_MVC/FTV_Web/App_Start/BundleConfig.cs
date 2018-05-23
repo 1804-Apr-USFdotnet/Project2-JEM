@@ -24,7 +24,8 @@ namespace FTV_Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/vendor/bootstrap-cyborg.min.css",
+                      "~/Content/media/bootstrap-cyborg.min.css",
+                      "~/Content/media/FTV_Style.css",
                       "~/Content/site.css"));
         }
     }
