@@ -55,7 +55,6 @@ namespace FTV.SL.Controllers
             if (user == null) return BadRequest();
 
             if (!userManager.CheckPassword(userLogin, user.Password)) return Unauthorized();
-
             var authManager = Request.GetOwinContext().Authentication;
             var claimsIdentity = userManager.CreateIdentity(userLogin, WebApiConfig.AuthenticationType);
 

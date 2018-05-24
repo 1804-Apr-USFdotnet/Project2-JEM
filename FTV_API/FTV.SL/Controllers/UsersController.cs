@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using FTV.DAL;
 using FTV.DAL.Models;
 using FTV.DAL.ViewModels;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.Owin.Security.Provider;
 
 namespace FTV.SL.Controllers
 {
@@ -39,15 +41,44 @@ namespace FTV.SL.Controllers
             return Mapper.Map<UserViewModel>(user);
         }
 
+        [HttpGet]
+        public Boolean Get(string userName)
+        {
+            var users = Mapper.Map<List<UserViewModel>>(_context.Users.GetAll());
+            foreach(var u in users)
+            {
+                if (userName == u.UserName)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         // POST: api/Users
         [HttpPost]
         public UserViewModel Post([FromBody] UserViewModel userViewModel)
         {
             if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.BadRequest);
             var user = Mapper.Map<UserViewModel, User>(userViewModel);
-            _context.Users.Add(user);
-            _context.Complete();
-            return userViewModel;
+            var userName = user.UserName;
+            UsersController checkName = new UsersController();
+            var check = checkName.Get(userName);
+            if (check == false)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            }
+            else
+            {
+                _context.Users.Add(user);
+                _context.Complete();
+                return userViewModel;
+            }
+            
+            
+          
         }
 
         // PUT: api/Users/5
