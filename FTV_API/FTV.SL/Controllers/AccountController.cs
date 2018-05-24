@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using FTV.DAL;
 using FTV.DAL.Models;
 using FTV.DAL.ViewModels;
@@ -31,6 +32,9 @@ namespace FTV.SL.Controllers
 
             if (userManager.Users.Any(u => u.UserName == user.UserName)) return BadRequest();
             userManager.Create(userRegister, user.Password);
+            var addNormDb = new UsersController();
+            var userAdd = Mapper.Map<User, UserViewModel>(user);
+            addNormDb.Post(userAdd);
        
 
             return Ok();
