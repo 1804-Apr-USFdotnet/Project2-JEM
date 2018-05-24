@@ -14,24 +14,22 @@ namespace FTV.Console
                 System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
 
 
+////                unitofWork.Users.Remove(user);
+//                unitofWork.Users.Add(new User
+//                {
+//                    FirstName = "john",
+//                    LastName = "dominguez",
+//                    Email = "123@gmail.com",
+//                    Password = "123456",
+//                    UserName = "Sougyo",
+//                    InGameName = "Sougyo"
+//                });
+//                unitofWork.Complete();
+//
+//                System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
+//                var user = unitofWork.Users.Find(x => x.UserName == "Sougyo").First();
 //                unitofWork.Users.Remove(user);
-                unitofWork.Users.Add(new User
-                {
-                    FirstName = "john",
-                    LastName = "dominguez",
-                    Email = "123@gmail.com",
-                    Password = "123456",
-                    UserName = "Sougyo",
-                    InGameName = "Sougyo"
-                });
-                unitofWork.Complete();
-
-                System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
-                var user = unitofWork.Users.Find(x => x.UserName == "Sougyo").First();
-                unitofWork.Users.Remove(user);
-                unitofWork.Complete();
-
-                System.Console.WriteLine($"User's Size: {unitofWork.Users.GetAll().Count()}");
+//                unitofWork.Complete();
             }
         }
     }
