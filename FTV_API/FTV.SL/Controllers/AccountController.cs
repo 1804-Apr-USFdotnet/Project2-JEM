@@ -60,7 +60,7 @@ namespace FTV.SL.Controllers
 
             authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claimsIdentity);
 
-            return Ok();
+            return Ok(Mapper.Map<User, UserViewModel>(user));
         }
 
         [HttpGet]

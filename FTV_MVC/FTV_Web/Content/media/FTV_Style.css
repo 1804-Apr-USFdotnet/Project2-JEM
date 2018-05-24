@@ -14,21 +14,19 @@ main {
 
 
 .hero-container {
-    background: linear-gradient( rgba(0,0,0,0.2), rgba(0, 0, 0, 0.8) ), url(https://i.redd.it/tcj8tsfkyyq01.png);
-    background-size: auto auto;
-    background-blend-mode: overlay;
-    background-size: cover;
-    background-position: center bottom;
     min-height: 500px;
     width: 100%;
-}
-
-.hero-container {
-    
+    background: linear-gradient( rgba(0,0,0,0.2), rgba(0, 0, 0, 0.8) ), url(https://i.redd.it/tcj8tsfkyyq01.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
 .hero-text {
     color: white;
+    position: relative;
+    bottom: 0;
 }
 
 @media only screen and (max-width:768px){
@@ -41,8 +39,7 @@ main {
         text-align: justify;
         text-align-last: center;
         padding: 5px;
-        font-size: 15px;     
-
+        font-size: 15px;
     }
 }
 
