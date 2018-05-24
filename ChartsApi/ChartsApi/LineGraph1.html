@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>FTV Comparison</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['line']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'Recent Games');
+            data.addColumn('number', 'John');
+            data.addColumn('number', 'Ninja');
+            //data.addColumn('number', 'Sougyo');
+            //data.addColumn('number', 'Monica');
+
+            data.addRows([
+                [0, 292, 274],
+                [1, 2762, 845],
+                [2, 1636, 665],
+                [3, 3571, 190],
+                [4, 802, 99],
+                [5, 853, 99],
+                [6, 108, 765],
+                [7, 2145, 271],
+                [8, 95, 605],
+                [9, 995, 130],
+                [10, 292, 274]
+            ]);
+
+            var options = {
+                chart: {
+                    title: 'Fortnite Player Comparison',
+                    subtitle: 'in Recent Games and Scores'
+                },
+                width: 900,
+                height: 500
+            };
+
+            var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+            chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+    </script>
+</head>
+<body>
+<div id="linechart_material" style="width: 1000px; height: 700px"></div>
+</body>
+</html>
