@@ -24,6 +24,7 @@ namespace FTV_Web.Controllers
 
             if (!User.Identity.IsAuthenticated)
             {
+                User.Identity.GetUserName();
 //                if (apiResponse.StatusCode != HttpStatusCode.Unauthorized)
 //                {
 //                    return View("Error");

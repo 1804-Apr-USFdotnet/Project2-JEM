@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using AutoMapper;
+﻿using AutoMapper;
 using FTV.DAL;
 using FTV.DAL.Models;
 using FTV.DAL.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using System.Linq;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace FTV.SL.Controllers
 {
@@ -60,8 +57,8 @@ namespace FTV.SL.Controllers
 
             authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claimsIdentity);
 
-            var userCont = new UsersController();
             var accountInfo = userCont.Get(account);
+            var userCont = new UsersController();
             return Ok(accountInfo);
         }
 
