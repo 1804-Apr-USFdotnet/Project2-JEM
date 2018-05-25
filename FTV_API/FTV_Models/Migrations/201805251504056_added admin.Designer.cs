@@ -7,13 +7,13 @@ namespace FTV.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addedroletouser : IMigrationMetadata
+    public sealed partial class addedadmin : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addedroletouser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedadmin));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805251444445_added role to user"; }
+            get { return "201805251504056_added admin"; }
         }
         
         string IMigrationMetadata.Source
