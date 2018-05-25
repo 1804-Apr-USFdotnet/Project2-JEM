@@ -15,10 +15,10 @@ namespace FTV.DAL.Models
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        //[Required(ErrorMessage = "First Name is Required")]
+        [Required(ErrorMessage = "First Name is Required")]
         public string FirstName { get; set; }
 
-       // [Required(ErrorMessage = "Last Name is Required")]
+        [Required(ErrorMessage = "Last Name is Required")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "User Name is Required")]
@@ -28,7 +28,7 @@ namespace FTV.DAL.Models
         [StringLength(64, MinimumLength = 6, ErrorMessage = "Password must be between 6 and 64 characters.")]
         public string Password { get; set; }
 
-        //[Required(ErrorMessage = "Email Address is Required")]
+        [Required(ErrorMessage = "Email Address is Required")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

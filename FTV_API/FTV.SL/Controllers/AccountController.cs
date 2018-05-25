@@ -43,24 +43,26 @@ namespace FTV.SL.Controllers
         [HttpPost]
         [Route("~/api/Account/Login")]
         [AllowAnonymous]
-        public IHttpActionResult LogIn(User user)
+        public IHttpActionResult LogIn(Account account)
         {
             if (!ModelState.IsValid) return BadRequest();
 
             //actually Login 
             var userStore = new UserStore<IdentityUser>(new DataDbContext());
             var userManager = new UserManager<IdentityUser>(userStore);
-            var userLogin = userManager.Users.FirstOrDefault(u => u.UserName == user.UserName);
+            var userLogin = userManager.Users.FirstOrDefault(u => u.UserName == account.UserName);
 
-            if (user == null) return BadRequest();
+            if (account == null) return BadRequest();
 
-            if (!userManager.CheckPassword(userLogin, user.Password)) return Unauthorized();
+            if (!userManager.CheckPassword(userLogin, account.Password)) return Unauthorized();
             var authManager = Request.GetOwinContext().Authentication;
             var claimsIdentity = userManager.CreateIdentity(userLogin, WebApiConfig.AuthenticationType);
 
             authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claimsIdentity);
 
-            return Ok(Mapper.Map<User, UserViewModel>(user));
+            var userCont = new UsersController();
+            var accountInfo = userCont.Get(account);
+            return Ok(accountInfo);
         }
 
         [HttpGet]

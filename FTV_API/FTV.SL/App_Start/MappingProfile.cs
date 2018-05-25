@@ -10,6 +10,7 @@ namespace FTV.SL.App_Start
         {
             CreateMap<User, UserViewModel>().ReverseMap();
             CreateMap<UserViewModel, User>().ReverseMap();
+            CreateMap<UserViewModel, ShowUserViewModel>().ReverseMap();
         }
     }
 }

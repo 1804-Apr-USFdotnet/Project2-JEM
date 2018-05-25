@@ -97,8 +97,13 @@
     <Compile Include="Migrations\201805212035303_remove constraints.Designer.cs">
       <DependentUpon>201805212035303_remove constraints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805250242061_readded constraints.cs" />
+    <Compile Include="Migrations\201805250242061_readded constraints.Designer.cs">
+      <DependentUpon>201805250242061_readded constraints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="ViewModels\ShowUserViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.Designer.cs">
@@ -130,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805212035303_remove constraints.resx">
       <DependentUpon>201805212035303_remove constraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805250242061_readded constraints.resx">
+      <DependentUpon>201805250242061_readded constraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

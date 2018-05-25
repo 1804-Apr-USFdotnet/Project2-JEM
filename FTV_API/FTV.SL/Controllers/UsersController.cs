@@ -44,16 +44,19 @@ namespace FTV.SL.Controllers
         [HttpGet]
         public Boolean Get(string userName)
         {
-            var users = Mapper.Map<List<UserViewModel>>(_context.Users.GetAll());
-            foreach(var u in users)
-            {
-                if (userName == u.UserName)
-                {
-                    return false;
-                }
-            }
+            var userNameFind = _context.Users.GetAll().FirstOrDefault(c => c.UserName == userName);
+            return (userNameFind == null ? true: false);
 
-            return true;
+
+        }
+
+        public ShowUserViewModel Get(Account account)
+        {
+         
+            var userNameFind = _context.Users.GetAll().FirstOrDefault(c => c.UserName == account.UserName);
+            var user = Mapper.Map<User, UserViewModel>(userNameFind);
+            return Mapper.Map<UserViewModel, ShowUserViewModel>(user);
+            
         }
 
         // POST: api/Users
