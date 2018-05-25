@@ -1,0 +1,8 @@
+﻿@model IEnumerable<FTV_Web.Models.UserModel>
+
+<ul>
+    @foreach (var user in Model)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>

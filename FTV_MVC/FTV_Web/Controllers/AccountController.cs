@@ -1,17 +1,10 @@
-﻿using System;
+﻿using FTV_Web.Models;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using FTV_Web.Models;
+using FTV_WEB.BL;
 
 namespace FTV_Web.Controllers
 {
@@ -42,19 +35,19 @@ namespace FTV_Web.Controllers
             }
             catch
             {
-                return View("Error");
+                return RedirectToAction("Login", "Account");
             }
 
             if (!apiResponse.IsSuccessStatusCode)
             {
-                return View("Error");
+                return RedirectToAction("Login", "Account");
             }
 
             PassCookiesToClient(apiResponse);
 
             string content = await apiResponse.Content.ReadAsStringAsync();
-            System.Web.HttpContext.Current.Session["Username"] = content;
-
+            LoggedInUser = Library.AsObject<UserModel>(content);
+            System.Web.HttpContext.Current.Session["Username"] = LoggedInUser?.UserName;
 
             return RedirectToAction("Index", "Home", content);
         }
@@ -87,7 +80,7 @@ namespace FTV_Web.Controllers
 
             PassCookiesToClient(apiResponse);
             System.Web.HttpContext.Current.Session.Remove("Username");
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         private bool PassCookiesToClient(HttpResponseMessage apiResponse)
@@ -104,3 +97,4 @@ namespace FTV_Web.Controllers
         }
     }   
 }
+

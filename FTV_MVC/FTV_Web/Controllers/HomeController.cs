@@ -1,41 +1,38 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using FTV_Web.Models;
+using FTV_WEB.BL;
+using Microsoft.Ajax.Utilities;
 
 namespace FTV_Web.Controllers
 {
     public class HomeController : AServiceController
     {
+//        [Authorize]
         public async Task<ActionResult> Index()
         {
-            //            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Data");
-            //
-            //            HttpResponseMessage apiResponse;
-            //            try
-            //            {
-            //                apiResponse = await HttpClient.SendAsync(apiRequest);
-            //            }
-            //            catch
-            //            {
-            //                return View("Error");
-            //            }
-            var username = System.Web.HttpContext.Current.Session["Username"];
-            if (username == null )
+            if (LoggedInUser == null)
             {
-                User.Identity.GetUserName();
-//                if (apiResponse.StatusCode != HttpStatusCode.Unauthorized)
-//                {
-//                    return View("Error");
-//                }
-                ViewBag.Message = "Not logged in!";
+                return RedirectToAction("Login", "Account");
+
             }
-            else
+            var apiRequest = CreateRequestToService(HttpMethod.Get, "api/users");
+
+            HttpResponseMessage apiResponse;
+            try
             {
-//                var contentString = await apiResponse.Content.ReadAsStringAsync();
-                ViewBag.Message = "Logged in! Result: " + username;
+                apiResponse = await HttpClient.SendAsync(apiRequest);
             }
-//            var users = 
-            return View();
+            catch
+            {
+                return View("Error");
+            }
+
+            var content = apiResponse.Content.ReadAsStringAsync();
+            var users = Library.Deserialize<UserModel>(content.Result);
+
+            return View(users);
         }
 
         //        public ActionResult Index()

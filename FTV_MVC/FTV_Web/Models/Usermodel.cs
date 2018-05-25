@@ -18,5 +18,7 @@ namespace FTV_Web.Models
         public string Email { get; set; }
 
         public string InGameName { get; set; }
+
+        public bool Admin { get; set; }
     }
 }

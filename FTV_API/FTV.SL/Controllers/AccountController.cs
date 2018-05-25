@@ -69,6 +69,33 @@ namespace FTV.SL.Controllers
             return Ok(Mapper.Map<UserViewModel, ShowUserViewModel>(user));
         }
 
+        [HttpPost]
+        [Route("~/api/Account/AdminLogin")]
+        [AllowAnonymous]
+        public IHttpActionResult AdminLogIn(Account account)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            //actually Login 
+            var userStore = new UserStore<IdentityUser>(new DataDbContext());
+            var userManager = new UserManager<IdentityUser>(userStore);
+            var userLogin = userManager.Users.FirstOrDefault(u => u.UserName == account.UserName);
+
+            if (account == null) return BadRequest();
+
+            if (!userManager.CheckPassword(userLogin, account.Password)) return Unauthorized();
+            var authManager = Request.GetOwinContext().Authentication;
+            var claimsIdentity = userManager.CreateIdentity(userLogin, WebApiConfig.AuthenticationType);
+
+            authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claimsIdentity);
+
+
+            var userNameFind = _context.Users.GetAll().FirstOrDefault(c => c.UserName == account.UserName);
+            var user = Mapper.Map<User, UserViewModel>(userNameFind);
+
+            return Ok(Mapper.Map<UserViewModel, ShowUserViewModel>(user));
+        }
+
         [HttpGet]
         [Route("~/api/Account/Logout")]
         public IHttpActionResult Logout()
