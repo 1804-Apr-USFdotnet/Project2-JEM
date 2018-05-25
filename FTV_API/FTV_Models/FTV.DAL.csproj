@@ -101,9 +101,9 @@
     <Compile Include="Migrations\201805250242061_readded constraints.Designer.cs">
       <DependentUpon>201805250242061_readded constraints.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805251444445_added role to user.cs" />
-    <Compile Include="Migrations\201805251444445_added role to user.Designer.cs">
-      <DependentUpon>201805251444445_added role to user.cs</DependentUpon>
+    <Compile Include="Migrations\201805251504056_added admin.cs" />
+    <Compile Include="Migrations\201805251504056_added admin.Designer.cs">
+      <DependentUpon>201805251504056_added admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -143,8 +143,8 @@
     <EmbeddedResource Include="Migrations\201805250242061_readded constraints.resx">
       <DependentUpon>201805250242061_readded constraints.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805251444445_added role to user.resx">
-      <DependentUpon>201805251444445_added role to user.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805251504056_added admin.resx">
+      <DependentUpon>201805251504056_added admin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

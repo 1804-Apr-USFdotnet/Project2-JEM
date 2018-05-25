@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
+using System.Dynamic;
 using System.Web.Http.Results;
 
 namespace FTV.DAL.Models
@@ -32,7 +34,8 @@ namespace FTV.DAL.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public Boolean Admin = false;
+        [DefaultValue(false)]
+        public bool Admin { get; set; }
 
 
         public string InGameName { get; set; }
