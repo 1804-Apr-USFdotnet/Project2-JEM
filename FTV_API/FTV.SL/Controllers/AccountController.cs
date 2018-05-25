@@ -23,6 +23,7 @@ namespace FTV.SL.Controllers
         {
             _context = new UnitOfWork(new FTVContext());
         }
+
         [HttpPost]
         [Route("~/api/Account/Register")]
         [AllowAnonymous]
