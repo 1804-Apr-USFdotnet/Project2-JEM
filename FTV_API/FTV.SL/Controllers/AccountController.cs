@@ -5,16 +5,18 @@ using FTV.DAL.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
+using Repositories;
 
 namespace FTV.SL.Controllers
 {
     public class AccountController : ApiController
     {
         //         Authentication
-
+        private readonly UnitOfWork _context;
+        public AccountController()
+        {
+            _context = new UnitOfWork(new FTVContext());
+        }
         [HttpPost]
         [Route("~/api/Account/Register")]
         [AllowAnonymous]
@@ -57,9 +59,10 @@ namespace FTV.SL.Controllers
 
             authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claimsIdentity);
 
-            var accountInfo = userCont.Get(account);
-            var userCont = new UsersController();
-            return Ok(accountInfo);
+            
+            var userNameFind = _context.Users.GetAll().FirstOrDefault(c => c.UserName == account.UserName);
+            var user = Mapper.Map<User, UserViewModel>(userNameFind);
+            return Ok(Mapper.Map<UserViewModel, ShowUserViewModel>(user));
         }
 
         [HttpGet]
