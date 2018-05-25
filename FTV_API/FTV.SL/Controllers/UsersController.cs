@@ -47,17 +47,17 @@ namespace FTV.SL.Controllers
             var userNameFind = _context.Users.GetAll().FirstOrDefault(c => c.UserName == userName);
             return (userNameFind == null ? true: false);
 
-
         }
 
-        public ShowUserViewModel Get(Account account)
-        {
-         
-            var userNameFind = _context.Users.GetAll().FirstOrDefault(c => c.UserName == account.UserName);
-            var user = Mapper.Map<User, UserViewModel>(userNameFind);
-            return Mapper.Map<UserViewModel, ShowUserViewModel>(user);
-            
-        }
+        //[HttpGet]
+        //public ShowUserViewModel Get(Account account)
+        //{
+
+        //    var userNameFind = _context.Users.GetAll().FirstOrDefault(c => c.UserName == account.UserName);
+        //    var user = Mapper.Map<User, UserViewModel>(userNameFind);
+        //    return Mapper.Map<UserViewModel, ShowUserViewModel>(user);
+
+        //}
 
         // POST: api/Users
         [HttpPost]
