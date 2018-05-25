@@ -32,6 +32,8 @@ namespace FTV.DAL.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        public Boolean Admin = false;
+
 
         public string InGameName { get; set; }
 
