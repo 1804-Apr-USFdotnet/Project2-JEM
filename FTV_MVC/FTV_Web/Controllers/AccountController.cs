@@ -52,8 +52,11 @@ namespace FTV_Web.Controllers
 
             PassCookiesToClient(apiResponse);
 
+            string content = await apiResponse.Content.ReadAsStringAsync();
+            System.Web.HttpContext.Current.Session["Username"] = content;
 
-            return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index", "Home", content);
         }
 
         // GET: Account/Logout
@@ -83,7 +86,7 @@ namespace FTV_Web.Controllers
             }
 
             PassCookiesToClient(apiResponse);
-
+            System.Web.HttpContext.Current.Session.Remove("Username");
             return RedirectToAction("Index", "Home");
         }
 

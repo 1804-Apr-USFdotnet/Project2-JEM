@@ -1,8 +1,6 @@
-﻿using System.Net;
-using System.Net.Http;
+﻿using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace FTV_Web.Controllers
 {
@@ -10,19 +8,19 @@ namespace FTV_Web.Controllers
     {
         public async Task<ActionResult> Index()
         {
-//            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Data");
-//
-//            HttpResponseMessage apiResponse;
-//            try
-//            {
-//                apiResponse = await HttpClient.SendAsync(apiRequest);
-//            }
-//            catch
-//            {
-//                return View("Error");
-//            }
-
-            if (!User.Identity.IsAuthenticated)
+            //            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, "api/Data");
+            //
+            //            HttpResponseMessage apiResponse;
+            //            try
+            //            {
+            //                apiResponse = await HttpClient.SendAsync(apiRequest);
+            //            }
+            //            catch
+            //            {
+            //                return View("Error");
+            //            }
+            var username = System.Web.HttpContext.Current.Session["Username"];
+            if (username == null )
             {
                 User.Identity.GetUserName();
 //                if (apiResponse.StatusCode != HttpStatusCode.Unauthorized)
@@ -34,9 +32,9 @@ namespace FTV_Web.Controllers
             else
             {
 //                var contentString = await apiResponse.Content.ReadAsStringAsync();
-                ViewBag.Message = "Logged in! Result: " + User.Identity.GetUserName();
+                ViewBag.Message = "Logged in! Result: " + username;
             }
-
+//            var users = 
             return View();
         }
 
