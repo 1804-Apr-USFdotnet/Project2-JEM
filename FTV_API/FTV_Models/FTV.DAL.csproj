@@ -108,6 +108,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="ViewModels\ShowUserViewModel.cs" />
+    <Compile Include="ViewModels\UserEditViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.cs" />
     <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.Designer.cs">
