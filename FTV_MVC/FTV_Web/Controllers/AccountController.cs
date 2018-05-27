@@ -4,7 +4,12 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using AutoMapper;
+using FTV.DAL.Models;
+using FTV.DAL.ViewModels;
 using FTV_WEB.BL;
+using LoginViewModel = FTV.DAL.ViewModels.LoginViewModel;
+using RegisterViewModel = FTV.DAL.ViewModels.RegisterViewModel;
 
 namespace FTV_Web.Controllers
 {
@@ -177,19 +182,25 @@ namespace FTV_Web.Controllers
         // GET: Account/Edit
         public ActionResult Edit()
         {
-            return View(LoggedInUser);
+            EditViewModel editView = new EditViewModel
+            {
+                FirstName = LoggedInUser.FirstName,
+                LastName = LoggedInUser.LastName,
+                InGameName = LoggedInUser.InGameName
+            };
+            return View(editView);
         }
 
         [HttpPut]
-        public async Task<ActionResult> Edit(UserModel account)
+        public async Task<ActionResult> Edit(EditViewModel account)
         {
             if (!ModelState.IsValid)
             {
                 return View("Error");
             }
 
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, $"api/User/{account.Id}");
-            apiRequest.Content = new ObjectContent<UserModel>(account, new JsonMediaTypeFormatter());
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, $"api/User/{LoggedInUser.Id}");
+            apiRequest.Content = new ObjectContent<EditViewModel>(account, new JsonMediaTypeFormatter());
 
             HttpResponseMessage apiResponse;
             try
@@ -205,14 +216,7 @@ namespace FTV_Web.Controllers
             {
                 return RedirectToAction("Edit", "Account");
             }
-
-            //PassCookiesToClient(apiResponse);
-
-            //string content = await apiResponse.Content.ReadAsStringAsync();
-            //LoggedInUser = Library.AsObject<UserModel>(content);
-            //System.Web.HttpContext.Current.Session["Username"] = LoggedInUser?.UserName;
-
-            return RedirectToAction("Edit", "Account");
+            return RedirectToAction("Details", "Account");
         }
 
     }   

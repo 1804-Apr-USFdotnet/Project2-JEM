@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using FTV.DAL.Models;
 using FTV_Web.Models;
 using FTV_WEB.BL;
 using Microsoft.Ajax.Utilities;

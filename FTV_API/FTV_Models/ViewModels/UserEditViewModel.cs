@@ -1,0 +1,13 @@
+﻿namespace FTV.DAL.ViewModels
+{
+    public class UserEditViewModel
+    {
+        public int Id { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string InGameName { get; set; }
+    }
+}

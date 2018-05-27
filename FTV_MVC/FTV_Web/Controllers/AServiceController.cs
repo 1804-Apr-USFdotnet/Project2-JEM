@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Mvc;
+using FTV.DAL.Models;
 using FTV_Web.Models;
 
 namespace FTV_Web.Controllers
