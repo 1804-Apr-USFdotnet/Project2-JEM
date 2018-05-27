@@ -95,6 +95,47 @@ namespace FTV_Web.Controllers
             }
             return false;
         }
+
+        // GET: Account/Register
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Register(RegisterViewModel account)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Error");
+            }
+
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/Account/Register");
+            apiRequest.Content = new ObjectContent<RegisterViewModel>(account, new JsonMediaTypeFormatter());
+
+            HttpResponseMessage apiResponse;
+            try
+            {
+                apiResponse = await HttpClient.SendAsync(apiRequest);
+            }
+            catch
+            {
+                return RedirectToAction("Register", "Account");
+            }
+
+            if (!apiResponse.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Register", "Account");
+            }
+
+            //PassCookiesToClient(apiResponse);
+
+            //string content = await apiResponse.Content.ReadAsStringAsync();
+            //LoggedInUser = Library.AsObject<UserModel>(content);
+            //System.Web.HttpContext.Current.Session["Username"] = LoggedInUser?.UserName;
+
+            return RedirectToAction("Login", "Account");
+        }
     }   
 }
 
