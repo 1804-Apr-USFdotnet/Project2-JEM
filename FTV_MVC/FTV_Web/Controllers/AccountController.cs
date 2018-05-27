@@ -10,6 +10,42 @@ namespace FTV_Web.Controllers
 {
     public class AccountController : AServiceController
     {
+        // GET: Account/Details/id
+        [HttpGet]
+        public async Task<ActionResult> Details(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Error");
+            }
+
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Get, $"api/Users/{id}");
+//            apiRequest.Content = new ObjectContent<int>(id, new JsonMediaTypeFormatter());
+
+            HttpResponseMessage apiResponse;
+            try
+            {
+                apiResponse = await HttpClient.SendAsync(apiRequest);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (!apiResponse.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            PassCookiesToClient(apiResponse);
+
+            string content = await apiResponse.Content.ReadAsStringAsync();
+            var user = Library.AsObject<UserModel>(content);
+
+            return View(user);
+        }
+
+
         // GET: Account/Login
         public ActionResult Login()
         {
@@ -48,6 +84,7 @@ namespace FTV_Web.Controllers
             string content = await apiResponse.Content.ReadAsStringAsync();
             LoggedInUser = Library.AsObject<UserModel>(content);
             System.Web.HttpContext.Current.Session["Username"] = LoggedInUser?.UserName;
+            System.Web.HttpContext.Current.Session["Id"] = LoggedInUser?.Id;
 
             return RedirectToAction("Index", "Home", content);
         }
@@ -136,6 +173,48 @@ namespace FTV_Web.Controllers
 
             return RedirectToAction("Login", "Account");
         }
+
+        // GET: Account/Edit
+        public ActionResult Edit()
+        {
+            return View(LoggedInUser);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Edit(UserModel account)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Error");
+            }
+
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/User");
+            apiRequest.Content = new ObjectContent<UserModel>(account, new JsonMediaTypeFormatter());
+
+            HttpResponseMessage apiResponse;
+            try
+            {
+                apiResponse = await HttpClient.SendAsync(apiRequest);
+            }
+            catch
+            {
+                return RedirectToAction("Edit", "Account");
+            }
+
+            if (!apiResponse.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Edit", "Account");
+            }
+
+            //PassCookiesToClient(apiResponse);
+
+            //string content = await apiResponse.Content.ReadAsStringAsync();
+            //LoggedInUser = Library.AsObject<UserModel>(content);
+            //System.Web.HttpContext.Current.Session["Username"] = LoggedInUser?.UserName;
+
+            return RedirectToAction("Edit", "Account");
+        }
+
     }   
 }
 

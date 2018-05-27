@@ -1,5 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
-@{ var username = System.Web.HttpContext.Current.Session["Username"];}
+@{
+    var username = System.Web.HttpContext.Current.Session["Username"];
+    var id = System.Web.HttpContext.Current.Session["Id"];
+}
 @if (username != null)
 {
     using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -7,7 +10,7 @@
         @Html.AntiForgeryToken()
 
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">@Html.ActionLink("Hello " + username + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link  text-primary" })</li>
+        <li class="nav-item">@Html.ActionLink("Hello " + username + "!", "Details", "Account", new {id = id}, htmlAttributes: new { title = "Manage", @class = "nav-link  text-primary" })</li>
         @* <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li> *@
         <li class="nav-item">@Html.ActionLink("Log out", "Logout", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
     </ul>
@@ -17,6 +20,6 @@ else
 {
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
-        <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+        <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link text-primary" })</li>
     </ul>
 }

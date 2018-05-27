@@ -15,7 +15,6 @@ namespace FTV_Web.Controllers
             if (LoggedInUser == null)
             {
                 return RedirectToAction("Login", "Account");
-
             }
             var apiRequest = CreateRequestToService(HttpMethod.Get, "api/users");
 

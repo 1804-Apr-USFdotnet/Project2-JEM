@@ -1,8 +1,15 @@
 ﻿@model IEnumerable<FTV_Web.Models.UserModel>
 
-<ul>
+<div class="row">
     @foreach (var user in Model)
     {
-        <li>@user.UserName</li>
+        <div class="col-md-4">
+            <div class="card" onclick="location.href = '@(Url.Action("Details","Account", new { id = user.Id }))'">
+                <div class="card-body">
+                    <h5 class="card-title">@user.UserName</h5>
+                    <p class="card-text">IGN: @user.InGameName</p>
+                </div>
+            </div>
+        </div>
     }
-</ul>
+</div>
