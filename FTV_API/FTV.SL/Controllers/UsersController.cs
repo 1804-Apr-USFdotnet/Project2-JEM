@@ -86,10 +86,10 @@ namespace FTV.SL.Controllers
 
         // PUT: api/Users/5
         [HttpPut]
-        public void Put(int id, [FromBody] UserViewModel userViewModel)
+        public void Put([FromBody] UserViewModel userViewModel)
         {
             if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var userInDb = _context.Users.GetAll().SingleOrDefault(c => c.Id == id);
+            var userInDb = _context.Users.GetAll().SingleOrDefault(c => c.Id == userViewModel.Id);
             if (userInDb == null) throw new HttpResponseException(HttpStatusCode.NotFound);
             Mapper.Map(userViewModel, userInDb);
             _context.Complete();
