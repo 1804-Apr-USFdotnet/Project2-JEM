@@ -7,8 +7,9 @@
 <h2>View</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Account", new { @class = "form-horizontal", role = "form" }))
 {
+    @Html.HttpMethodOverride(HttpVerbs.Put)
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">

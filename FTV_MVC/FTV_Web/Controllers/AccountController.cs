@@ -188,7 +188,7 @@ namespace FTV_Web.Controllers
                 return View("Error");
             }
 
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, "api/User");
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, $"api/User/{account.Id}");
             apiRequest.Content = new ObjectContent<UserModel>(account, new JsonMediaTypeFormatter());
 
             HttpResponseMessage apiResponse;
