@@ -1,0 +1,76 @@
+node('master') {
+    stage('import') {
+        try {
+        git branch: 'Develop', url: 'https://github.com/1804-Apr-USFdotnet/Project2-JEM.git'
+        }
+        catch(exc){
+            slackError('import')
+            throw exc
+        }
+    }
+
+    stage('build') {
+        try{
+            dir("FTV_MVC"){
+        
+            bat 'nuget restore'
+            bat 'msbuild'
+            }
+        
+        }
+        catch(exc){
+         slackError('build')   
+         throw exc
+        }
+    }
+    stage('test'){
+        try{
+
+        }
+        catch(exc){
+            slackError('test')
+            throw exc
+        }
+    }
+    stage('analyze'){
+        try{
+            dir('FTV_MVC'){
+                SonarQube.Scanner.MSBuild.exe begin /k:"Project-2-JEM-MVC" /d:sonar.organization="emisale94-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="3b109a17df12f4f50c9caccd4a152e821ef8a633"
+                bat 'msbuild FTV.SL /t:rebuild'
+                SonarQube.Scanner.MSBuild.exe end /d:sonar.login="3b109a17df12f4f50c9caccd4a152e821ef8a633"
+            }
+        }
+        catch(exc){
+            slackError('analyze')
+            throw exc
+        }
+    }
+    stage('package'){
+        try{
+            dir('FTV_MVC/FTV_Web'){
+                bat 'msbuild /t:package /p:Configuration=Debug;PackageFileName=..\\Package.zip'
+            }
+        }
+        catch(exc){
+            slackError('package')
+            throw exc
+        }
+    }
+    stage('deploy'){
+        try{
+         dir('FTV_MVC'){
+                 bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-18-217-168-174.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"v3X!H4Cax6TR(@M$kZMfPh6lqnjEfhT\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
+
+            }
+        }
+        catch (exc) {
+            slackError('deploy')
+            throw exc
+        }
+    }
+}
+
+
+def slackError(stageName) {
+    slackSend color: 'danger', message: "FAILED ${stageName} stage: [<${JOB_URL}|${env.JOB_NAME}> <${env.BUILD_URL}console|${env.BUILD_DISPLAY_NAME}>] [${currentBuild.durationString.replace(' and counting', '')}]"
+}
