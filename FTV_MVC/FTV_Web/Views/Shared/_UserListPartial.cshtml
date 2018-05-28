@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<FTV.DAL.Models.UserModel>
 
+<h2 class="text-primary">Users</h2>
 <div class="row">
     @foreach (var user in Model)
     {
-        <div class="col-md-4">
+        <div class="col-md-4 my-3">
             <div class="card" onclick="location.href = '@(Url.Action("Details","Account", new { id = user.Id }))'">
                 <div class="card-body">
                     <h5 class="card-title">@user.UserName</h5>

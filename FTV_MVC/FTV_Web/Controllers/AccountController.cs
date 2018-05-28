@@ -122,6 +122,7 @@ namespace FTV_Web.Controllers
 
             PassCookiesToClient(apiResponse);
             System.Web.HttpContext.Current.Session.Remove("Username");
+            LoggedInUser = null;
             return RedirectToAction("Login", "Account");
         }
 
@@ -194,6 +195,11 @@ namespace FTV_Web.Controllers
         [HttpPut]
         public async Task<ActionResult> Edit(EditViewModel account)
         {
+            if (LoggedInUser == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View("Error");
