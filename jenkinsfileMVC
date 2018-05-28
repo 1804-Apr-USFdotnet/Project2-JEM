@@ -33,17 +33,17 @@ node('master') {
         }
     }
     stage('analyze'){
-        try{
-            dir('FTV_MVC'){
-                bat 'SonarScanner.MSBuild.exe begin /k:"Project-2-JEM-MVC" /d:sonar.organization="emisale94-github" /v:0.1.0'
-                bat 'msbuild FTV_WEB /t:rebuild'
-                bat 'SonarScanner.MSBuild.exe end'
-            }
-        }
-        catch(exc){
-            slackError('analyze')
-            throw exc
-        }
+        //try{
+         //   dir('FTV_MVC'){
+          //      bat 'SonarScanner.MSBuild.exe begin /k:"Project-2-JEM-MVC" /d:sonar.organization="emisale94-github" /v:0.1.0'
+          //      bat 'msbuild FTV_WEB /t:rebuild'
+           //     bat 'SonarScanner.MSBuild.exe end'
+          //  }
+      //  }
+      //  catch(exc){
+        //    slackError('analyze')
+        //    throw exc
+      //  }
     }
     stage('package'){
         try{
