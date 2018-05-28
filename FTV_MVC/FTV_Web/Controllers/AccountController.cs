@@ -182,7 +182,7 @@ namespace FTV_Web.Controllers
         // GET: Account/Edit
         public ActionResult Edit()
         {
-            EditViewModel editView = new EditViewModel
+            EditViewModel editView = new EditViewModel()
             {
                 FirstName = LoggedInUser.FirstName,
                 LastName = LoggedInUser.LastName,
@@ -199,7 +199,7 @@ namespace FTV_Web.Controllers
                 return View("Error");
             }
 
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, $"api/User/{LoggedInUser.Id}");
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, $"api/Users/{LoggedInUser.Id}");
             apiRequest.Content = new ObjectContent<EditViewModel>(account, new JsonMediaTypeFormatter());
 
             HttpResponseMessage apiResponse;
@@ -216,7 +216,7 @@ namespace FTV_Web.Controllers
             {
                 return RedirectToAction("Edit", "Account");
             }
-            return RedirectToAction("Details", "Account");
+            return RedirectToAction("Details", "Account", new {id = LoggedInUser.Id});
         }
 
     }   

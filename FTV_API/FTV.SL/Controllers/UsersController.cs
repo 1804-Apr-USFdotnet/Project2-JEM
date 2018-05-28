@@ -79,14 +79,11 @@ namespace FTV.SL.Controllers
                 _context.Complete();
                 return userViewModel;
             }
-            
-            
-          
         }
 
         // PUT: api/Users/5
         [HttpPut]
-        public void Put(int id, [FromBody] UserEditViewModel userViewModel)
+        public void Put([FromUri] int id, [FromBody] UserEditViewModel userViewModel)
         {
             if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.BadRequest);
             var userInDb = _context.Users.GetAll().SingleOrDefault(c => c.Id == id);
