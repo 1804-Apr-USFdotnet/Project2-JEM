@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTV.Repositories", "Reposit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTV.Console", "FTV.Console\FTV.Console.csproj", "{AED12CF6-5C02-4BED-A014-D76FB8BCA718}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForniteApi", "ForniteApi\ForniteApi.csproj", "{820D9084-E0FD-49FA-8468-E5A5B49EB334}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AED12CF6-5C02-4BED-A014-D76FB8BCA718}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AED12CF6-5C02-4BED-A014-D76FB8BCA718}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AED12CF6-5C02-4BED-A014-D76FB8BCA718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820D9084-E0FD-49FA-8468-E5A5B49EB334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820D9084-E0FD-49FA-8468-E5A5B49EB334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820D9084-E0FD-49FA-8468-E5A5B49EB334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820D9084-E0FD-49FA-8468-E5A5B49EB334}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
