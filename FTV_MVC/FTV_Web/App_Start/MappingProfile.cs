@@ -9,7 +9,7 @@ namespace FTV_Web
     {
         public MappingProfile()
         {
-            CreateMap<UserModel, EditViewModel>().ReverseMap();
+            CreateMap<UserModel, EditUserViewModel>().ReverseMap();
             
 //            CreateMap<EditViewModel, UserModel>().ReverseMap();
 //            CreateMap<UserModel, RegisterViewModel>().ReverseMap();

@@ -15,6 +15,7 @@ namespace FTV.SL.App_Start
             CreateMap<UserEditViewModel, UserViewModel>().ReverseMap();
             CreateMap<Comment, CommentViewModel>().ReverseMap();
             CreateMap<Comment, EditCommentViewModel>().ReverseMap();
+            CreateMap<Comment, CreateCommentViewModel>().ReverseMap();
             CreateMap<FollowedPlayer, FollowedPlayerViewModel>().ReverseMap();
             
         }

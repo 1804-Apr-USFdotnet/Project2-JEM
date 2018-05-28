@@ -7,88 +7,80 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<section class="my-5">
+    <div class="row d-flex">
+        <div class="mx-auto text-center">
+            <img src="https://picsum.photos/300/300/?random" class="img-fluid rounded-circle" alt="Sample image">>
 
-<div>
-    <hr/>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <h2 class="mt-5 text-uppercase">@Model.UserName</h2>
+            <p>My name is @Model.FirstName @Model.LastName</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            @if (!Model.InGameName.IsEmpty())
+            {
+                <p>
+                    IGN: @Model.InGameName
+                </p>
+            }
+            <p>
+                @Html.ActionLink("Back to List", "Index", "Home", null, new {@class = "btn btn-secondary"})
+                @if (Model.UserName == username)
+                {
+                    @Html.ActionLink("Edit", "Edit", null, new {@class = "btn btn-primary"})
+                }
+            </p>
+        </div>
+    </div>
+</section>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+<section class="my-5 bg-dark p-3 rounded">
+    <div class="d-flex">
+        <div class="mx-auto d-flex">
+            <h5 class="text-center btn-">Followed Players</h5>
+            @if (Model.UserName != username)
+            {
+                @Html.ActionLink("Add Player", "Create", "Comment", new {id = Model.Id}, new {@class = "btn  btn-outline-primary ml-3" })
+            }
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+    <div class="row d-flex text-center">
+        @foreach (var fp in Model.FollowedPlayers)
+        {
+            <div class="col-md-5 col-sm-5 mx-auto my-3">
+                <div class="card bg-light text-primary text-center p-1">
+                    <blockquote class="blockquote mb-0">
+                        <p>
+                            @fp.InGameName
+                            <br class="my-2"/>
+                            @if (Model.Id == fp.UserId)
+                            {
+                                @Html.ActionLink("X", "Delete", "FollowedPlayer", new {id = fp.Id}, new {@class = "btn btn-sm btn-outline-warning rounded"})
+                            }
+                        </p>
+                    </blockquote>
+                </div>
+            </div>
+        }
+    </div>
+</section>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.InGameName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InGameName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Admin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Admin)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Back to List", "Index", "Home", null, new {@class = "btn btn-secondary"})
-    @if (Model.UserName == username)
+<section class="my-5">
+    <h5>Comments</h5>
+    @if (Model.UserName != username)
     {
-        @Html.ActionLink("Edit", "Edit", null, new {@class = "btn btn-primary"})
+        @Html.ActionLink("Add Comment", "Create", "Comment", new {id = Model.Id}, new {@class = "btn btn-sm btn-primary"})
     }
-</p>
-
-
-<h2>Comments</h2>
-<ol>
-
-    @foreach (var comment in Model.Comments)
-    {
-        <li>
-            @comment.Body
-        </li>
-    }
-</ol>
-
-
-<h2>Followed Players</h2>
-<ol>
-    @foreach (var fp in Model.FollowedPlayers)
-    {
-        <li>
-            @fp.InGameName
-        </li>
-    }
-</ol>
+    <ul class="list-unstyled">
+        @foreach (var comment in Model.Comments)
+        {
+            <li class="media my-4">
+                <img class="mr-3" src="https://picsum.photos/64/64/" alt="Generic placeholder image">
+                <div class="media-body">
+                    <p class="mt-0 mb-1">User ID: @comment.UserId</p>
+                    @comment.Body
+                </div>
+            </li>
+        }
+    </ul>
+</section>

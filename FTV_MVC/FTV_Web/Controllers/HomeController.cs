@@ -38,11 +38,6 @@ namespace FTV_Web.Controllers
             return View(users);
         }
 
-        //        public ActionResult Index()
-        //        {
-        //            return View();
-        //        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

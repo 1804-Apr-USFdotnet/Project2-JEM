@@ -1,15 +1,13 @@
-﻿using FTV.DAL;
+﻿using AutoMapper;
+using FTV.DAL;
 using FTV.DAL.Models;
+using FTV.DAL.ViewModels;
 using Repositories;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
-using AutoMapper;
-using FTV.DAL.ViewModels;
-using FTV.SL.App_Start;
 
 namespace FTV.SL.Controllers
 {
@@ -61,18 +59,18 @@ namespace FTV.SL.Controllers
 
         // POST: api/Comments
         [ResponseType(typeof(Comment))]
-        public IHttpActionResult PostComment(Comment comment)
+        public IHttpActionResult PostComment(CreateCommentViewModel comment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            Mapper.Map<CommentViewModel>(comment);
+            var c = Mapper.Map<Comment>(comment);
 
-            _context.Comments.Add(comment);
+            _context.Comments.Add(c);
             _context.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = comment.Id }, comment);
+            return Ok(comment);
         }
 
         // DELETE: api/Comments/5

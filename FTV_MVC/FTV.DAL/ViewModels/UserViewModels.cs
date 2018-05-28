@@ -77,7 +77,7 @@ namespace FTV.DAL.ViewModels
         public string InGameName { get; set; }
     }
 
-    public class EditViewModel
+    public class EditUserViewModel
     {
         [Required]
         [Display(Name = "First Name")]

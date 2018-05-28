@@ -188,17 +188,17 @@ namespace FTV_Web.Controllers
         // GET: Account/Edit
         public ActionResult Edit()
         {
-            EditViewModel editView = new EditViewModel()
+             EditUserViewModel user = new EditUserViewModel()
             {
                 FirstName = LoggedInUser.FirstName,
                 LastName = LoggedInUser.LastName,
                 InGameName = LoggedInUser.InGameName
             };
-            return View(editView);
+            return View(user);
         }
 
         [HttpPut]
-        public async Task<ActionResult> Edit(EditViewModel account)
+        public async Task<ActionResult> Edit(EditUserViewModel account)
         {
             if (LoggedInUser == null)
             {
@@ -211,7 +211,7 @@ namespace FTV_Web.Controllers
             }
 
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Put, $"api/Users/{LoggedInUser.Id}");
-            apiRequest.Content = new ObjectContent<EditViewModel>(account, new JsonMediaTypeFormatter());
+            apiRequest.Content = new ObjectContent<EditUserViewModel>(account, new JsonMediaTypeFormatter());
 
             HttpResponseMessage apiResponse;
             try
