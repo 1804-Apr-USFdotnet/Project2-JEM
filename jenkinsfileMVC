@@ -59,7 +59,7 @@ node('master') {
     stage('deploy'){
         try{
          dir('FTV_MVC'){
-                 bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-18-217-168-174.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"v3X!H4Cax6TR(@M$kZMfPh6lqnjEfhT\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
+                 bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-18-217-168-174.us-east-2.compute.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\";v3X!H4Cax6TR(@M$kZMfPh6lqnjEfhT\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
 
             }
         }
