@@ -17,10 +17,11 @@ namespace FTV.DAL.Models
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
-        [Required] public int UserId { get; set; }
-
         //Foreign Key
-        public virtual User User { get; set; }
+        [Required] public int UserId { get; set; }
+//
+//        
+//        public virtual User User { get; set; }
 
         //DateTime
         public DateTime? Created { get; set; }

@@ -137,6 +137,7 @@ namespace FTV.SL.Controllers
             return Ok(Mapper.Map<List<FollowedPlayerViewModel>>(user.FollowedPlayers));
         }
 
+        [HttpDelete]
         [ResponseType(typeof(FollowedPlayer))]
         [Route("~/api/User/FollowedPlayers/{id}")]
         public IHttpActionResult DeleteComment(int id)

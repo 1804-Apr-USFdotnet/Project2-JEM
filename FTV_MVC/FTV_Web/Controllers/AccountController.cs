@@ -19,6 +19,11 @@ namespace FTV_Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
+            if (LoggedInUser == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View("Error");

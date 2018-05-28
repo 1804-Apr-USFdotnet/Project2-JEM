@@ -1,5 +1,5 @@
 ﻿@{
-    var username = System.Web.HttpContext.Current.Session["Username"].ToString();
+    var username = HttpContext.Current.Session["Username"].ToString();
 }
 @model FTV.DAL.Models.UserModel
 
@@ -10,7 +10,7 @@
 <h2>Details</h2>
 
 <div>
-    <hr />
+    <hr/>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -63,9 +63,32 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index", "Home", null, new { @class = "btn btn-secondary" })
+    @Html.ActionLink("Back to List", "Index", "Home", null, new {@class = "btn btn-secondary"})
     @if (Model.UserName == username)
     {
-        @Html.ActionLink("Edit", "Edit", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Edit", "Edit", null, new {@class = "btn btn-primary"})
     }
 </p>
+
+
+<h2>Comments</h2>
+<ol>
+
+    @foreach (var comment in Model.Comments)
+    {
+        <li>
+            @comment.Body
+        </li>
+    }
+</ol>
+
+
+<h2>Followed Players</h2>
+<ol>
+    @foreach (var fp in Model.FollowedPlayers)
+    {
+        <li>
+            @fp.InGameName
+        </li>
+    }
+</ol>

@@ -1,7 +1,9 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using AutoMapper;
 using FTV.DAL.Models;
+using FTV.DAL.ViewModels;
 using FTV_Web.Models;
 using FTV_WEB.BL;
 using Microsoft.Ajax.Utilities;
@@ -30,7 +32,8 @@ namespace FTV_Web.Controllers
             }
 
             var content = apiResponse.Content.ReadAsStringAsync();
-            var users = Library.Deserialize<UserModel>(content.Result);
+            var users = Library.Deserialize<UserViewModel>(content.Result);
+//            var users = Library.AsObjectList<UserModel>(content.Result);
 
             return View(users);
         }

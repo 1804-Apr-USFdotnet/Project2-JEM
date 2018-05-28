@@ -1,4 +1,7 @@
-﻿namespace FTV.DAL.ViewModels
+﻿using System.Collections.Generic;
+using FTV.DAL.Models;
+
+namespace FTV.DAL.ViewModels
 {
     public class UserViewModel
     {
@@ -14,8 +17,10 @@
 
         public string InGameName { get; set; }
 
-        public string Password { get; set; }
-
         public bool Admin { get; set; }
+
+        public ICollection<FollowedPlayerViewModel> FollowedPlayers { get; set; }
+
+        public ICollection<CommentViewModel> Comments { get; set; }
     }
 }

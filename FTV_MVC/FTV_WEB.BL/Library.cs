@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace FTV_WEB.BL
 {
@@ -9,15 +9,20 @@ namespace FTV_WEB.BL
     {
         public static string Serialize<T>(T type)
         {
-            return JsonConvert.SerializeObject(type);
+            return JsonConvert.SerializeObject(type, new JsonSerializerSettings
+            {
+                PreserveReferencesHandling = PreserveReferencesHandling.All
+            });
         }
 
         public static IEnumerable<T> Deserialize<T>(string list)
         {
-            return JsonConvert.DeserializeObject<List<T>>(list);
+            return JsonConvert.DeserializeObject<List<T>>(list, new JsonSerializerSettings
+            {
+//                PreserveReferencesHandling = PreserveReferencesHandling.All
+                  ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
         }
-
-        //
 
         public static string AsJsonList<T>(List<T> tt)
         {
