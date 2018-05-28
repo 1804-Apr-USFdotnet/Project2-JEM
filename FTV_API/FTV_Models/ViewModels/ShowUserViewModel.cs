@@ -20,6 +20,6 @@ namespace FTV.DAL.ViewModels
 
         public string InGameName { get; set; }
 
-        public bool Admin { get; set; }
+        public bool Admin { get; set; } 
     }
 }

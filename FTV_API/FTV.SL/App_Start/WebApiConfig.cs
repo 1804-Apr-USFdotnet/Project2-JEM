@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using System.Web.UI.WebControls;
 using RouteParameter = System.Web.Http.RouteParameter;
+using System.Web.Http.Cors;
 
 namespace FTV.SL
 {
@@ -14,7 +15,8 @@ namespace FTV.SL
 
 
             // Web API configuration and services
-            config.EnableCors();
+            var cors = new EnableCorsAttribute("*","*","*");
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
