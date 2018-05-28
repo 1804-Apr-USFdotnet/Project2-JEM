@@ -108,5 +108,51 @@ namespace FTV.SL.Controllers
             return Ok(Mapper.Map<List<CommentViewModel>>(user.Comments));
         }
 
+        [HttpPost]
+        [Route("~/api/User/{id}/FollowedPlayers")]
+        public IHttpActionResult AddFollowedPlayer(int id, FollowedPlayer fp)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Mapper.Map<FollowedPlayerViewModel>(fp);
+
+            _context.FollowedPlayers.Add(fp);
+            _context.Complete();
+            return Ok();
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(FollowedPlayer))]
+        [Route("~/api/User/{id}/FollowedPlayers")]
+        public IHttpActionResult GetFollowedPlayersByUser(int id)
+        {
+            var user = _context.Users.Get(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Mapper.Map<List<FollowedPlayerViewModel>>(user.FollowedPlayers));
+        }
+
+        [ResponseType(typeof(FollowedPlayer))]
+        [Route("~/api/User/FollowedPlayers/{id}")]
+        public IHttpActionResult DeleteComment(int id)
+        {
+            FollowedPlayer fp = _context.FollowedPlayers.Get(id);
+            if (fp == null)
+            {
+                return NotFound();
+            }
+
+            _context.FollowedPlayers.Remove(fp);
+            _context.Complete();
+
+            return Ok(fp);
+        }
     }
+
+
 }
