@@ -49,16 +49,6 @@ namespace FTV.SL.Controllers
 
         }
 
-        //[HttpGet]
-        //public ShowUserViewModel Get(Account account)
-        //{
-
-        //    var userNameFind = _context.Users.GetAll().FirstOrDefault(c => c.UserName == account.UserName);
-        //    var user = Mapper.Map<User, UserViewModel>(userNameFind);
-        //    return Mapper.Map<UserViewModel, ShowUserViewModel>(user);
-
-        //}
-
         // POST: api/Users
         [HttpPost]
         public UserViewModel Post([FromBody] UserViewModel userViewModel)
@@ -83,13 +73,14 @@ namespace FTV.SL.Controllers
 
         // PUT: api/Users/5
         [HttpPut]
-        public void Put([FromUri] int id, [FromBody] UserEditViewModel userViewModel)
+        public IHttpActionResult Put([FromUri] int id, [FromBody] UserEditViewModel userViewModel)
         {
             if (!ModelState.IsValid) throw new HttpResponseException(HttpStatusCode.BadRequest);
             var userInDb = _context.Users.GetAll().SingleOrDefault(c => c.Id == id);
             if (userInDb == null) throw new HttpResponseException(HttpStatusCode.NotFound);
             Mapper.Map(userViewModel, userInDb);
             _context.Complete();
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // DELETE: api/Users/5

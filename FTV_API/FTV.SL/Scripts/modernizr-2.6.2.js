@@ -512,12 +512,12 @@ window.Modernizr = (function( window, document, undefined ) {
       return !!window.openDatabase;
     };
 
-    // Vendors had inconsistent prefixing with the experimental Indexed DB:
-    // - Webkit's implementation is accessible through webkitIndexedDB
-    // - Firefox shipped moz_indexedDB before FF4b9, but since then has been mozIndexedDB
-    // For speed, we don't test the legacy (and beta-only) indexedDB
-    tests['indexedDB'] = function() {
-      return !!testPropsAll("indexedDB", window);
+    // Vendors had inconsistent prefixing with the experimental Indexed FTV.API:
+    // - Webkit's implementation is accessible through webkitIndexedFTV.API
+    // - Firefox shipped moz_indexedFTV.API before FF4b9, but since then has been mozIndexedFTV.API
+    // For speed, we don't test the legacy (and beta-only) indexedFTV.API
+    tests['indexedFTV.API'] = function() {
+      return !!testPropsAll("indexedFTV.API", window);
     };
 
     // documentMode logic from YUI to filter out IE8 Compat Mode

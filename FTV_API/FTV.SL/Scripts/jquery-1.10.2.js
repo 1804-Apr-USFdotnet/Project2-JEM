@@ -43,7 +43,7 @@ var
 	// For `typeof xmlNode.method` instead of `xmlNode.method !== undefined`
 	core_strundefined = typeof undefined,
 
-	// Use the correct document accordingly with window argument (sandbox)
+	// Use the correct document accordingly with window argument (sanFTV.APIox)
 	location = window.location,
 	document = window.document,
 	docElem = document.documentElement,
@@ -96,7 +96,7 @@ var
 
 	// JSON RegExp
 	rvalidchars = /^[\],:{}\s]*$/,
-	rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g,
+	rvaliFTV.APIraces = /(?:^|:|,)(?:\s*\[)+/g,
 	rvalidescape = /\\(?:["\\\/bfnrt]|u[\da-fA-F]{4})/g,
 	rvalidtokens = /"[^"\\\r\n]*"|true|false|null|-?(?:\d+\.|)\d+(?:[eE][+-]?\d+|)/g,
 
@@ -578,7 +578,7 @@ jQuery.extend({
 				// Logic borrowed from http://json.org/json2.js
 				if ( rvalidchars.test( data.replace( rvalidescape, "@" )
 					.replace( rvalidtokens, "]" )
-					.replace( rvalidbraces, "")) ) {
+					.replace( rvaliFTV.APIraces, "")) ) {
 
 					return ( new Function( "return " + data ) )();
 				}
@@ -3767,7 +3767,7 @@ jQuery.extend({
 		"applet": true,
 		"embed": true,
 		// Ban all objects except for Flash (which handle expandos)
-		"object": "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+		"object": "clsid:D27CFTV.API6E-AE6D-11cf-96B8-444553540000"
 	},
 
 	hasData: function( elem ) {
@@ -5842,7 +5842,7 @@ jQuery.fn.extend({
 		return this.pushStack( jQuery.unique(all) );
 	},
 
-	addBack: function( selector ) {
+	adFTV.APIack: function( selector ) {
 		return this.add( selector == null ?
 			this.prevObject : this.prevObject.filter(selector)
 		);
@@ -7565,7 +7565,7 @@ function buildParams( prefix, obj, traditional, add ) {
 		add( prefix, obj );
 	}
 }
-jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblclick " +
+jQuery.each( ("blur focus focusin focusout load resize scroll unload click FTV.APIlclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup error contextmenu").split(" "), function( i, name ) {
 
@@ -9775,7 +9775,7 @@ jQuery.fn.size = function() {
 	return this.length;
 };
 
-jQuery.fn.andSelf = jQuery.fn.addBack;
+jQuery.fn.andSelf = jQuery.fn.adFTV.APIack;
 
 // })();
 if ( typeof module === "object" && module && typeof module.exports === "object" ) {

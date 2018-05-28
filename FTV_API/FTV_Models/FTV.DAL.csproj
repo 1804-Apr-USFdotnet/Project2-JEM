@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="ViewModels\CommentViewModels.cs" />
     <Compile Include="ViewModels\ShowUserViewModel.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />

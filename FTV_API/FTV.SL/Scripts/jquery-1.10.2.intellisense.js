@@ -744,7 +744,7 @@ intellisense.annotate(jQuery.fn, {
     ///   <returns type="jQuery" />
     /// </signature>
   },
-  'addBack': function() {
+  'adFTV.APIack': function() {
     /// <signature>
     ///   <summary>Add the previous set of elements on the stack to the current set, optionally filtered by a selector.</summary>
     ///   <param name="selector" type="String">A string containing a selector expression to match the current set of elements against.</param>
@@ -1137,14 +1137,14 @@ intellisense.annotate(jQuery.fn, {
     ///   <returns type="jQuery" />
     /// </signature>
   },
-  'dblclick': function() {
+  'FTV.APIlclick': function() {
     /// <signature>
-    ///   <summary>Bind an event handler to the "dblclick" JavaScript event, or trigger that event on an element.</summary>
+    ///   <summary>Bind an event handler to the "FTV.APIlclick" JavaScript event, or trigger that event on an element.</summary>
     ///   <param name="handler(eventObject)" type="Function">A function to execute each time the event is triggered.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
-    ///   <summary>Bind an event handler to the "dblclick" JavaScript event, or trigger that event on an element.</summary>
+    ///   <summary>Bind an event handler to the "FTV.APIlclick" JavaScript event, or trigger that event on an element.</summary>
     ///   <param name="eventData" type="Object">An object containing data that will be passed to the event handler.</param>
     ///   <param name="handler(eventObject)" type="Function">A function to execute each time the event is triggered.</param>
     ///   <returns type="jQuery" />

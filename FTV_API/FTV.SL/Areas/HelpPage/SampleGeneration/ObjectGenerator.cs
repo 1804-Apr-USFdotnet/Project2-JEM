@@ -408,7 +408,6 @@ namespace FTV.SL.Areas.HelpPage
                     { typeof(Char), index => (Char)65 },
                     { typeof(DateTime), index => DateTime.Now },
                     { typeof(DateTimeOffset), index => new DateTimeOffset(DateTime.Now) },
-                    { typeof(DBNull), index => DBNull.Value },
                     { typeof(Decimal), index => (Decimal)index },
                     { typeof(Double), index => (Double)(index + 0.1) },
                     { typeof(Guid), index => Guid.NewGuid() },
