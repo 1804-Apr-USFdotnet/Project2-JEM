@@ -47,7 +47,7 @@ node('master') {
     }
     stage('package'){
         try{
-            dir('FTV_MVC'){
+            dir('FTV_MVC/FTV_Web'){
                 bat 'msbuild /t:package /p:Configuration=Debug;PackageFileName=..\\Package.zip'
             }
         }
