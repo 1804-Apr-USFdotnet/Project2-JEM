@@ -17,4 +17,13 @@ namespace FTV.DAL.ViewModels
         public DateTime? Created { get; set; }
         public DateTime? Modified { get; set; }
     }
+
+    public class EditCommentViewModel
+    {
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        public string Body { get; set; }
+
+    }
 }

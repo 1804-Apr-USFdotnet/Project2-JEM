@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using Microsoft.Owin.Security.Provider;
 
 namespace FTV.SL.Controllers
@@ -93,6 +94,19 @@ namespace FTV.SL.Controllers
             _context.Complete();
         }
 
+        [HttpGet]
+        [ResponseType(typeof(Comment))]
+        [Route("~/api/User/{id}/Comments")]
+        public IHttpActionResult GetCommentByUser(int id)
+        {
+            var user = _context.Users.Get(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Mapper.Map<List<CommentViewModel>>(user.Comments));
+        }
 
     }
 }

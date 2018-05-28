@@ -13,6 +13,9 @@ namespace FTV.SL.App_Start
             CreateMap<UserViewModel, ShowUserViewModel>().ReverseMap();
             CreateMap<UserEditViewModel, User>().ReverseMap();
             CreateMap<UserEditViewModel, UserViewModel>().ReverseMap();
+            CreateMap<Comment, CommentViewModel>().ReverseMap();
+            CreateMap<Comment, EditCommentViewModel>().ReverseMap();
+
         }
     }
 }
