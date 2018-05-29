@@ -1,0 +1,23 @@
+<label>Username:  </label>
+    <input #searchValue type="text" />
+
+<button (click)="getProfile(searchValue.value)">Get Profile</button>
+
+<div>
+    <span>{{_Username}}, </span>
+    <span>{{Platform}}, </span>
+    <ul>
+      <li *ngFor="let stat of LifeTimeStats">{{stat.Key}}, {{stat.Value}}</li>
+    </ul>
+    <ul>
+      Recent Matches: <br/>
+      <li *ngFor="let stats of RecentMatches">Kills: {{stats.Kills}} <br/>
+        Rating Change: {{stats.RatingChange}}<br/>
+        First Place: {{stats.Top1}}<br/>
+        Top 3: {{stats.Top3}}<br/>
+        Top 5: {{stats.Top5}}</li>
+    </ul>
+
+
+
+</div>

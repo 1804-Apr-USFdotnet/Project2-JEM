@@ -1,0 +1,18 @@
+{
+  "name": "ftv.angular",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "node.js": "0.0.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^6.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
