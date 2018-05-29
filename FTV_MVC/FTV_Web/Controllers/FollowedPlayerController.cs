@@ -1,14 +1,9 @@
-﻿using System.Net;
+﻿using System.Data.Entity.Infrastructure;
+using FTV.DAL.ViewModels;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using AutoMapper;
-using FTV.DAL.Models;
-using FTV.DAL.ViewModels;
-using FTV_Web.Models;
-using FTV_WEB.BL;
-using Microsoft.Ajax.Utilities;
 
 namespace FTV_Web.Controllers
 {
@@ -22,18 +17,22 @@ namespace FTV_Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(int id, CreateCommentViewModel comment)
+        public async Task<ActionResult> Create(int id, CreateFollowedPlayerViewModel fp)
         {
             if (!ModelState.IsValid)
             {
                 return View("Error");
             }
 
-            comment.UserId = id;
+            TwoFollowedPlayerViewModel followedPlayer = new TwoFollowedPlayerViewModel()
+            {
+                InGameName = fp.InGameName,
+                UserId = id
+            };
 
 
             HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, $"api/User/{id}/FollowedPlayers");
-            apiRequest.Content = new ObjectContent<CreateCommentViewModel>(comment, new JsonMediaTypeFormatter());
+            apiRequest.Content = new ObjectContent<TwoFollowedPlayerViewModel>(followedPlayer, new JsonMediaTypeFormatter());
 
             HttpResponseMessage apiResponse;
             try
@@ -42,12 +41,12 @@ namespace FTV_Web.Controllers
             }
             catch
             {
-                return RedirectToAction("Create", "Comment");
+                return RedirectToAction("Create", "FollowedPlayer");
             }
 
             if (!apiResponse.IsSuccessStatusCode)
             {
-                return RedirectToAction("Create", "Comment");
+                return RedirectToAction("Create", "FollowedPlayer");
             }
 
             return RedirectToAction("Details", "Account", new {id = id});

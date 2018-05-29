@@ -1,14 +1,20 @@
 ﻿@model IEnumerable<FTV.DAL.ViewModels.UserViewModel>
+<h3 class="text-primary text-center mt-4 text-success">Users</h3>
 
-<h2 class="text-primary">Users</h2>
-<div class="row">
+<div class="row my-3">
+
     @foreach (var user in Model)
     {
         <div class="col-md-4 my-3">
-            <div class="card" onclick="location.href = '@(Url.Action("Details","Account", new { id = user.Id }))'">
+            <div class="card" onclick="location.href = '@(Url.Action("Details", "Account", new {id = user.Id}))'">
                 <div class="card-body">
-                    <h5 class="card-title">@user.UserName</h5>
+                    <h5 class="card-title text-success">@user.UserName</h5>
                     <p class="card-text">IGN: @user.InGameName</p>
+                    <p>
+                        <small>Following <span class="text-primary">@user.FollowedPlayers.Count</span> players</small> |
+                        <small><span class="text-primary">@user.Comments.Count</span> Profile Comments</small>
+                    </p>
+                    <p>
                 </div>
             </div>
         </div>

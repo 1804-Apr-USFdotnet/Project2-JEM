@@ -14,7 +14,7 @@ main {
 
 
 .hero-container {
-    min-height: 500px;
+    min-height: 300px;
     width: 100%;
     background: linear-gradient( rgba(0,0,0,0.2), rgba(0, 0, 0, 0.8) ), url(https://i.redd.it/tcj8tsfkyyq01.png);
     background-position: center;

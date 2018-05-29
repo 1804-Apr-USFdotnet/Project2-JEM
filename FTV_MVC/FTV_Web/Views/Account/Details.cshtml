@@ -10,7 +10,7 @@
 <section class="my-5">
     <div class="row d-flex">
         <div class="mx-auto text-center">
-            <img src="https://picsum.photos/300/300/?random" class="img-fluid rounded-circle" alt="Sample image">>
+            <img src="https://picsum.photos/300/300/?random" class="img-fluid rounded-circle" alt="Sample image">
 
             <h2 class="mt-5 text-uppercase">@Model.UserName</h2>
             <p>My name is @Model.FirstName @Model.LastName</p>
@@ -36,17 +36,20 @@
     <div class="d-flex">
         <div class="mx-auto d-flex">
             <h5 class="text-center btn-">Followed Players</h5>
-            @if (Model.UserName != username)
+            @if (Model.UserName == username)
             {
-                @Html.ActionLink("Add Player", "Create", "Comment", new {id = Model.Id}, new {@class = "btn  btn-outline-primary ml-3" })
+                @Html.ActionLink("Add Player", "Create", "FollowedPlayer", new { id = Model.Id }, new {@class = "btn  btn-outline-primary ml-3" })
             }
         </div>
     </div>
-
+    @if (Model.FollowedPlayers.Count == 0 )
+    {
+        <p class="text-center mt-2">No Followed Players</p>
+    }
     <div class="row d-flex text-center">
         @foreach (var fp in Model.FollowedPlayers)
         {
-            <div class="col-md-5 col-sm-5 mx-auto my-3">
+            <div class="col-md-3 col-sm-5 mx-auto my-3">
                 <div class="card bg-light text-primary text-center p-1">
                     <blockquote class="blockquote mb-0">
                         <p>
@@ -65,22 +68,32 @@
 </section>
 
 
-<section class="my-5">
-    <h5>Comments</h5>
-    @if (Model.UserName != username)
-    {
-        @Html.ActionLink("Add Comment", "Create", "Comment", new {id = Model.Id}, new {@class = "btn btn-sm btn-primary"})
-    }
-    <ul class="list-unstyled">
-        @foreach (var comment in Model.Comments)
-        {
-            <li class="media my-4">
-                <img class="mr-3" src="https://picsum.photos/64/64/" alt="Generic placeholder image">
-                <div class="media-body">
-                    <p class="mt-0 mb-1">User ID: @comment.UserId</p>
-                    @comment.Body
-                </div>
-            </li>
-        }
-    </ul>
+<section class="my-5 d-flex">
+    <div class="row mx-auto">
+        <div class="col-md-8">
+            <h5>Comments</h5>
+
+            @if (Model.UserName != username)
+            {
+                @Html.ActionLink("Add Comment", "Create", "Comment", new {id = Model.Id}, new {@class = "btn btn-sm btn-primary"})
+            }
+            <ul class="list-unstyled">
+                @if (Model.Comments.Count == 0)
+                {
+                    <p class="text-center mt-2">No Followed Players</p>
+                }
+                @foreach (var comment in Model.Comments)
+                {
+                    <li class="media my-4" onclick="location.href = '@(Url.Action("Details", "Account", new {id = comment.UserId}))'">
+                        <img class="mr-3" src="https://picsum.photos/64/64/" alt="Generic placeholder image">
+                        <div class="media-body">
+                            <p class="mt-0 mb-1">User ID: @comment.UserId</p>
+                            @comment.Body
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    
 </section>

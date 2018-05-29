@@ -22,8 +22,7 @@ namespace FTV.DAL.ViewModels
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
     }
-
-    public class CreateCommentViewModel
+public class CreateCommentViewModel
     {
         [StringLength(400, MinimumLength = 10, ErrorMessage = "Character limit of 400 reached")]
         [DataType(DataType.MultilineText)]
@@ -32,4 +31,5 @@ namespace FTV.DAL.ViewModels
         [ScaffoldColumn(false)]
         public int UserId { get; set; }
     }
+    
 }

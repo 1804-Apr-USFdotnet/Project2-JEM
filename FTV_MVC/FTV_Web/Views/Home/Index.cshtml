@@ -4,17 +4,15 @@
 }
 
 
-<div class="hero-container d-flex my-5">
+<div class="hero-container d-flex mb-0">
     <div class="hero-text text-center  mx-auto">
-        <h3 class="">Tracker Visualizer</h3>
-        <h4>Account Manager</h4>
+        
     </div>
 </div>
 
+<h4 class="text-center text-monospace text-justify">Stat Tracker Visualizer</h4>
 
-<div class="container">
-    <div class="row">
-        <h1>@ViewBag.Message</h1>
-        @Html.Partial("_UserListPartial")
-    </div>
+
+<div class="container my-5">
+    @Html.Partial("_UserListPartial")
 </div>
