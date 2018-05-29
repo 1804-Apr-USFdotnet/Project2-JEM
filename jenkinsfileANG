@@ -58,7 +58,8 @@ node('master') {
     stage('deploy'){
         try{
          dir('FTV.Angular/angular-FTV-Angular/dist/angular-FTV-Angular'){
-                bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-34-192-2-29.compute-1.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"V4CwrGJ;6MCXlcykpiahpNhpayuO7IR4\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
+                bat "msdeploy -verb:sync -source:contentPath=\"%CD%\" -dest:contentPath=\"Default Web Site/FTV\",wmsvc=\"ec2-34-192-2-29.compute-1.amazonaws.com\",userName=\"Administrator\",password=\"V4CwrGJ;6MCXlcykpiahpNhpayuO7IR4\" -enableRule:AppOffline -allowUntrusted"
+               // bat "msdeploy -verb:sync -source:contentPath=\"%CD%\" -dest:auto,computerName=\"https://ec2-34-192-2-29.compute-1.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"V4CwrGJ;6MCXlcykpiahpNhpayuO7IR4\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
             }
         }
         catch (exc) {
