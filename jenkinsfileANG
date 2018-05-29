@@ -47,7 +47,7 @@ node('master') {
     stage('package'){
         try{
             dir('FTV.Angular/angular-FTV-Angular'){
-                bat 'npm run build -- --base-href /angularapp1/ --prod'
+                bat 'npm run build -- --base-href /FTV/ --prod'
             }
         }
         catch(exc){
