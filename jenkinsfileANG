@@ -11,8 +11,7 @@ node('master') {
 
     stage('build') {
         try{
-            dir("FTV.Angular"){
-        
+            dir('FTV.Angular/angular-FTV-Angular'){
             bat 'npm install'
             bat 'npm run build'
             }
@@ -47,7 +46,7 @@ node('master') {
     }
     stage('package'){
         try{
-            dir('FTV.Angular'){
+            dir('FTV.Angular/angular-FTV-Angular'){
                 bat 'npm run build -- --base-href /angularapp1/ --prod'
             }
         }
@@ -58,7 +57,7 @@ node('master') {
     }
     stage('deploy'){
         try{
-         dir('FTV.Angular/dist/FTV.Angular'){
+         dir('FTV.Angular/angular-FTV-Angular/dist/angular-FTV-Angular'){
                 bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-34-192-2-29.compute-1.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"V4CwrGJ;6MCXlcykpiahpNhpayuO7IR4\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
             }
         }
