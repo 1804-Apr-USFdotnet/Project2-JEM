@@ -1,5 +1,6 @@
 ﻿@{
     var username = HttpContext.Current.Session["Username"].ToString();
+    var userId = Int32.Parse(HttpContext.Current.Session["Id"].ToString());
 }
 @model FTV.DAL.Models.UserModel
 
@@ -55,7 +56,7 @@
                         <p>
                             @fp.InGameName
                             <br class="my-2"/>
-                            @if (Model.Id == fp.UserId)
+                            @if (Model.Id == userId)
                             {
                                 @Html.ActionLink("X", "Delete", "FollowedPlayer", new {id = fp.Id}, new {@class = "btn btn-sm btn-outline-warning rounded"})
                             }
