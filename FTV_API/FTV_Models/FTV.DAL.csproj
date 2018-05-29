@@ -88,22 +88,7 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="DataDbContext.cs" />
     <Compile Include="IDbContext.cs" />
-    <Compile Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.cs" />
-    <Compile Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.Designer.cs">
-      <DependentUpon>201805211556591_AddCommentTableAndAddedDateTimeValues.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805212035303_remove constraints.cs" />
-    <Compile Include="Migrations\201805212035303_remove constraints.Designer.cs">
-      <DependentUpon>201805212035303_remove constraints.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805250242061_readded constraints.cs" />
-    <Compile Include="Migrations\201805250242061_readded constraints.Designer.cs">
-      <DependentUpon>201805250242061_readded constraints.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805251504056_added admin.cs" />
-    <Compile Include="Migrations\201805251504056_added admin.Designer.cs">
-      <DependentUpon>201805251504056_added admin.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="ViewModels\CommentViewModels.cs" />
@@ -111,43 +96,14 @@
     <Compile Include="ViewModels\ShowUserViewModel.cs" />
     <Compile Include="ViewModels\UserEditViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
-    <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.cs" />
-    <Compile Include="Migrations\201805192258497_ItToldMeToUpdate.Designer.cs">
-      <DependentUpon>201805192258497_ItToldMeToUpdate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\FollowedPlayer.cs" />
     <Compile Include="FTVContext.cs" />
-    <Compile Include="Migrations\201805180230459_updateModels.cs" />
-    <Compile Include="Migrations\201805180230459_updateModels.Designer.cs">
-      <DependentUpon>201805180230459_updateModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805180230459_updateModels.resx">
-      <DependentUpon>201805180230459_updateModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805192258497_ItToldMeToUpdate.resx">
-      <DependentUpon>201805192258497_ItToldMeToUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805211556591_AddCommentTableAndAddedDateTimeValues.resx">
-      <DependentUpon>201805211556591_AddCommentTableAndAddedDateTimeValues.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805212035303_remove constraints.resx">
-      <DependentUpon>201805212035303_remove constraints.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805250242061_readded constraints.resx">
-      <DependentUpon>201805250242061_readded constraints.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805251504056_added admin.resx">
-      <DependentUpon>201805251504056_added admin.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
