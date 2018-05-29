@@ -1,39 +1,61 @@
-<img src="https://i.redd.it/tcj8tsfkyyq01.png" class="rounded img-fluid" alt="Cinque Terre"> 
+<style>
+    .parallax {
+        /* The image used */
+        background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("http://i.imgur.com/L1SfmbQ.jpg");
+    
+        min-height: 300px;
+        /* Set a specific height */
+    
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    </style>
 
-<h1 class="display-4 text-primary text-center mb-5">Fornite Player Stats</h1>
 
-<div class="d-flex">
-<div class="container d-flex  ">
-    <div class="col-md-10 mx-auto">
-        <label class="center">Username:  </label>
-        <input #searchValue type="text" />
-            
-        <button (click)="getProfile(searchValue.value)" class="btn btn-outline-primary">Get Profile</button>
+<div class="parallax p-5 d-flex">
+    <div class="container m-auto">
 
-        <div class="teal">
-        
-            <br><br>
-            <h3 *ngIf="_Username">{{_Username}}</h3>
-            <h5 class="mb-3" *ngIf="Platform">{{Platform}}</h5>
-
-            <h3 *ngIf="RecentMatches">Lifetime Stats: </h3><br/>
-            <ul class="list-group">
-                <li class="list-group-item" *ngFor="let stat of LifeTimeStats">
-                <h6 class="d-inline">{{stat.Key}}:  </h6>{{stat.Value}}
-                </li>
-            </ul>
-            <ul class="list-group">
-            <h3 *ngIf="RecentMatches">Recent Matches: </h3><br/>
-            <li class="list-group-item" *ngFor="let stats of RecentMatches">
-                Kills: {{stats.Kills}} <br/>
-                Rating Change: {{stats.RatingChange}}<br/>
-                First Place: {{stats.Top1}}<br/>
-                Top 3: {{stats.Top3}}<br/>
-                Top 5: {{stats.Top5}}</li>
-            </ul>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <h1 class="display-3 text-success text-center mb-5">Fornite Player Stats</h1>
+            </div>
         </div>
-
+        
+        <div class="row justify-content-center ">
+            <div class="col-md-12">
+                <div class="justify-content-center">
+                    <input #searchValue type="text" />
+                    <button (click)="getProfile(searchValue.value)" class="btn btn-outline-primary">Get Profile</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<div class="container my-5">
+    <div class="row justify-content-center">
+            <div class="col-md-10">
+                    <h3 *ngIf="_Username" class="mt-5">{{_Username}}</h3>
+                    <h5 class="mb-3" *ngIf="Platform">{{Platform}}</h5>
+        
+                    <h3 *ngIf="RecentMatches">Lifetime Stats: </h3><br/>
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let stat of LifeTimeStats">
+                        <h6 class="d-inline">{{stat.Key}}:  </h6>{{stat.Value}}
+                        </li>
+                    </ul>
+                    <ul class="list-group">
+                    <h3 *ngIf="RecentMatches">Recent Matches: </h3><br/>
+                    <li class="list-group-item" *ngFor="let stats of RecentMatches">
+                        Kills: {{stats.Kills}} <br/>
+                        Rating Change: {{stats.RatingChange}}<br/>
+                        First Place: {{stats.Top1}}<br/>npm 
+                        Top 3: {{stats.Top3}}<br/>
+                        Top 5: {{stats.Top5}}</li>
+                    </ul>
+            </div>
+        </div>
 </div>
