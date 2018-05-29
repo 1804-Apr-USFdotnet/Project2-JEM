@@ -36,7 +36,7 @@
 <section class="my-5 bg-dark p-3 rounded">
     <div class="d-flex">
         <div class="mx-auto d-flex">
-            <h5 class="text-center btn-">Followed Players</h5>
+            <h5 class="text-center">Followed Players</h5>
             @if (Model.UserName == username)
             {
                 @Html.ActionLink("Add Player", "Create", "FollowedPlayer", new { id = Model.Id }, new {@class = "btn  btn-outline-primary ml-3" })
@@ -69,11 +69,26 @@
 </section>
 
 
-<section class="my-5 d-flex">
+<section class="bg-dark d-flex">
+    <div class="mx-auto">
+        @if (!Model.InGameName.IsEmpty())
+        {
+            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+        }
+        else
+        {
+            <p>
+                Add IGN to display data
+            </p>
+        }
+    </div>
+</section>
+
+<section class="my-5">
     <div class="row mx-auto">
         <div class="col-md-8">
             <h5>Comments</h5>
-
+            
             @if (Model.UserName != username)
             {
                 @Html.ActionLink("Add Comment", "Create", "Comment", new {id = Model.Id}, new {@class = "btn btn-sm btn-primary"})
@@ -86,7 +101,7 @@
                 @foreach (var comment in Model.Comments)
                 {
                     <li class="media my-4" onclick="location.href = '@(Url.Action("Details", "Account", new {id = comment.UserId}))'">
-                        <img class="mr-3" src="https://picsum.photos/64/64/" alt="Generic placeholder image">
+                        <img class="mr-3" src="https://picsum.photos/64/64/?random" alt="Generic placeholder image">
                         <div class="media-body">
                             <p class="mt-0 mb-1">User ID: @comment.UserId</p>
                             @comment.Body
@@ -96,5 +111,4 @@
             </ul>
         </div>
     </div>
-    
 </section>
