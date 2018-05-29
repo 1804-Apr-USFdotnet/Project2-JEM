@@ -1,0 +1,75 @@
+node('master') {
+    stage('import') {
+        try {
+        git branch: 'Develop', url: 'https://github.com/1804-Apr-USFdotnet/Project2-JEM.git'
+        }
+        catch(exc){
+            slackError('import')
+            throw exc
+        }
+    }
+
+    stage('build') {
+        try{
+            dir("FTV.Angular"){
+        
+            bat 'npm install'
+            bat 'npm run build'
+            }
+        
+        }
+        catch(exc){
+         slackError('build')   
+         throw exc
+        }
+    }
+    stage('test'){
+        try{
+
+        }
+        catch(exc){
+            slackError('test')
+            throw exc
+        }
+    }
+    stage('analyze'){
+        //try{
+         //   dir('FTV_MVC'){
+          //      bat 'SonarScanner.MSBuild.exe begin /k:"Project-2-JEM-MVC" /d:sonar.organization="emisale94-github" /v:0.1.0'
+          //      bat 'msbuild FTV_WEB /t:rebuild'
+           //     bat 'SonarScanner.MSBuild.exe end'
+          //  }
+      //  }
+      //  catch(exc){
+        //    slackError('analyze')
+        //    throw exc
+      //  }
+    }
+    stage('package'){
+        try{
+            dir('FTV.Angular'){
+                bat 'npm run build -- --base-href /angularapp1/ --prod'
+            }
+        }
+        catch(exc){
+            slackError('package')
+            throw exc
+        }
+    }
+    stage('deploy'){
+        try{
+         dir('FTV.Angular/dist/FTV.Angular'){
+                bat "msdeploy -verb:sync -source:package=\"%CD%\\Package.zip\" -dest:auto,computerName=\"https://ec2-34-192-2-29.compute-1.amazonaws.com:8172/msdeploy.axd\",userName=\"Administrator\",password=\"V4CwrGJ;6MCXlcykpiahpNhpayuO7IR4\",authtype=\"basic\",includeAcls=\"False\" -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParam:\"IIS Web Application Name\"=\"Default Web Site/FTV\" -enableRule:AppOffline -allowUntrusted"
+            }
+        }
+        catch (exc) {
+            slackError('deploy')
+            throw exc
+        }
+    }
+}
+
+
+def slackError(stageName) {
+    slackSend color: 'danger', message: "FAILED ${stageName} stage: [<${JOB_URL}|${env.JOB_NAME}> <${env.BUILD_URL}console|${env.BUILD_DISPLAY_NAME}>] [${currentBuild.durationString.replace(' and counting', '')}]"
+}
